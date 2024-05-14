@@ -32,10 +32,14 @@ public class UserRepository {
         jdbcTemplate.update(sql, user.getUsername(), user.getEmail(), user.getPassword());
     }
 
-    public boolean isValidUser(String username, String password) {
+    public boolean isValidUser(String username, String password, HttpSession session) {
         String sql = "SELECT COUNT(*) FROM users WHERE username = ? AND password = ?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, username, password);
-        return count == 1;
+        if (count == 1) {
+            session.setAttribute("username", username); // Gem brugernavn i session
+            return true;
+        }
+        return false;
     }
 
 }

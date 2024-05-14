@@ -9,6 +9,11 @@ public class RentalAgreement {
     public RentalAgreement(){
 
     }
+    public RentalAgreement(int type, int duration, int price){
+        this.type = type;
+        this.duration = duration;
+        this.price = price;
+    }
     public RentalAgreement(int id, int type, int duration, int price) {
         this.id = id;
         this.type = type;

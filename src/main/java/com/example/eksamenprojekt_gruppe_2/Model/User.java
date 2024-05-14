@@ -7,16 +7,16 @@ private String username;
 private String password;
 private String email;
 
-public User () {
+public User() {
 }
 
-    public User (String username, String email, String password) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;
     }
 
-    public User (int id, String username, String password, String email) {
+    public User(int id, String username, String password, String email) {
 
     this.id = id;
     this.username = username;

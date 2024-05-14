@@ -1,8 +1,10 @@
 package com.example.eksamenprojekt_gruppe_2.Repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSo
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,3 +37,5 @@ public class DatabaseManager {
         return -1;
     }
 }
+
+

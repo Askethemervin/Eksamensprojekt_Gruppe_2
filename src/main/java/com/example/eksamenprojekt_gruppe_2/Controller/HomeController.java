@@ -23,8 +23,5 @@ public class HomeController {
     public String createNewDamageAndDefect() {
         return "New_DamageAndDefect";
     }
-    @GetMapping("/biler")
-    public String showCars(){
-        return "Car";
-    }
+
 }

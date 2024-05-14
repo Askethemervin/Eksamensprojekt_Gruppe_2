@@ -11,16 +11,16 @@ import java.util.List;
 
 @Repository
 public class CarRepository {
-private final JdbcTemplate jdbcTemplate;
 
+    private final JdbcTemplate jdbcTemplate;
     @Autowired
     public CarRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
     public List<Car> findAll() {
         String sql = "SELECT * FROM cars";
-        RowMapper<Car> carRowMapper = new BeanPropertyRowMapper<Car>(Car.class);
-        return jdbcTemplate.query(sql, carRowMapper);
+        RowMapper<Car> carRowMapper = new BeanPropertyRowMapper<>(Car.class);
+        return jdbcTemplate.query(sql,  carRowMapper);
     }
 
 }

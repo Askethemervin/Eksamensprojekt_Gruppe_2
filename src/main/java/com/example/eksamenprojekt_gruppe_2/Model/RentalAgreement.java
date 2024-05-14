@@ -7,8 +7,8 @@ public class RentalAgreement {
     int price;
 
     public RentalAgreement(){
-
     }
+
     public RentalAgreement(int type, int duration, int price){
         this.type = type;
         this.duration = duration;

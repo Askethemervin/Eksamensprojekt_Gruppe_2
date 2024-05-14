@@ -8,19 +8,4 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HomeController {
-
-    @GetMapping("/skadeogudbedring")
-    public String showDamageAndDefectDashboard(){
-        return "Dashboard_DamageAndDefect";
-    }
-
-    @PostMapping("/skadeogudbedring")
-    public String createDamageAndDefect() {
-        return "redirect:/indtastlejeaftaleid";
-    }
-
-    @GetMapping ("/nyskadesrapport")
-    public String createNewDamageAndDefect() {
-        return "New_DamageAndDefect";
-    }
 }

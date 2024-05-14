@@ -1,5 +1,6 @@
 package com.example.eksamenprojekt_gruppe_2.Repository;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -36,7 +37,7 @@ public class UserRepository {
         String sql = "SELECT COUNT(*) FROM users WHERE username = ? AND password = ?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, username, password);
         if (count == 1) {
-            session.setAttribute("username", username); // Gem brugernavn i session
+            session.setAttribute("username", username);
             return true;
         }
         return false;

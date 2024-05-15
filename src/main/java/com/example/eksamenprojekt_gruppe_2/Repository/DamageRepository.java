@@ -31,8 +31,12 @@ public class DamageRepository {
 
     // create
     public void save (DamageReport damageReport){
-        String sql = "INSERT INTO damagereport (rentalAgreementId, damageDescription, price) VALUES (?, ?, ?)";
+        try {
+        String sql = "INSERT INTO damagereport (id, rentalAgreementId, damageDescription, price) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(sql, damageReport.getRentalAgreementId(), damageReport.getDamageDescription(), damageReport.getPrice());
+    } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // read

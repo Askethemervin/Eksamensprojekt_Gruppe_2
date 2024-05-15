@@ -2,19 +2,19 @@ package com.example.eksamenprojekt_gruppe_2.Model;
 
 public class RentalAgreement {
     int id;
-    int type;
+    String type;
     int duration;
-    int price;
+    double price;
 
     public RentalAgreement(){
     }
 
-    public RentalAgreement(int type, int duration, int price){
+    public RentalAgreement(String type, int duration, double price){
         this.type = type;
         this.duration = duration;
         this.price = price;
     }
-    public RentalAgreement(int id, int type, int duration, int price) {
+    public RentalAgreement(int id, String type, int duration, double price) {
         this.id = id;
         this.type = type;
         this.duration = duration;
@@ -28,11 +28,11 @@ public class RentalAgreement {
         this.id = id;
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -44,11 +44,11 @@ public class RentalAgreement {
         this.duration = duration;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }

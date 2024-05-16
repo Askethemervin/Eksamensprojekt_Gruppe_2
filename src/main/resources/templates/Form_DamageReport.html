@@ -1,35 +1,22 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skadesrapport</title>
-    <link rel="stylesheet" href="/static/CSS/DamageReport.css">
+    <title>Opret Skadesrapport</title>
 </head>
 <body>
-<div class="List_DamageReport">
-<div class="container">
-    <h1>Skadesrapport for Lejeaftale ID:</h1>
-
-    <div class="Damage-List">
-        <h2>Skade Liste</h2>
-        <ul>
-            <li th:each="damageReport : ${damageReports}">
-                <p>Skadebeskrivelse: <span th:text="${damageReport.damageDescription}"></span></p>
-                <p>Pris: <span th:text="${damageReport.price}"></span></p>
-            </li>
-        </ul>
+<h1>Opret Skadesrapport</h1>
+<form action="/skadesrapporter/opret" method="post">
+    <input type="hidden" id="rentalAgreementId" name="lejeaftale_id" th:value="${lejeaftale_id}">
+    <div>
+        <label for="damageDescription">Skadesbeskrivelse:</label>
+        <textarea id="damageDescription" name="damageDescription" required></textarea>
     </div>
-
-    <form action="/skadesrapporter/adddamage" method="get">
-
-        <button type="submit" class="button">Tilføj skade</button>
-    </form>
-
-    <form action="/skadesrapporter/dashboard" method="get">
-        <button type="submit" class="button">Afslut skadesrapport</button>
-    </form>
-</div>
-</div>
+    <div>
+        <label for="price">Pris:</label>
+        <input type="number" step="0.01" id="price" name="price" required>
+    </div>
+    <button type="submit">Gem Skade</button>
+</form>
 </body>
 </html>

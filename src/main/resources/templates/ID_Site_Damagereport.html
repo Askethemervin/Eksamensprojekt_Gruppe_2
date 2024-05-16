@@ -1,28 +1,17 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Opret Skadesrapport</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Indtast Lejeaftale ID</title>
 </head>
 <body>
-<div class="ID_Input_DamageReport">
-<div class="container">
-  <h1>Opret Skadesrapport</h1>
-
-  <form action="/skadesrapporter/indtastid" method="post">
+<h1>Indtast Lejeaftale ID</h1>
+<form action="/skadesrapporter/indtastid" method="post">
+  <div>
     <label for="lejeaftale_id">Lejeaftale ID:</label>
-
-    <input type="text" id="lejeaftale_id" name="lejeaftale_id" required>
-    <input type="hidden" name="lejeaftale_id" value="{lejeaftale_id}">
-    <div class="button_DamageReport">
-    <a href="http://localhost:8080/skadesrapporter/opret">
-    <button type="submit" class="button">Fortsæt</button>
-    </a>
-    </div>
-  </form>
-</div>
-</div>
+    <input type="number" id="lejeaftale_id" name="lejeaftale_id" required>
+  </div>
+  <button type="submit">Næste</button>
+</form>
 </body>
 </html>

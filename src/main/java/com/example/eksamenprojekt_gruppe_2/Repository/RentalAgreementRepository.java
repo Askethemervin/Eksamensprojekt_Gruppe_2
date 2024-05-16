@@ -25,8 +25,8 @@ public class RentalAgreementRepository {
         return jdbcTemplate.query(sql, rentalAgreementRowMapper);
     }
     public void addRentalAgreement(RentalAgreement rentalAgreement) {
-        String sql = "INSERT INTO rentalagreements (rental_type, duration, price) VALUES (?,?,?)";
-        jdbcTemplate.update(sql, rentalAgreement.getType(),rentalAgreement.getDuration(),rentalAgreement.getPrice());
+        String sql = "INSERT INTO rentalagreements (rental_type, duration, price, car_id) VALUES (?,?,?,?)";
+        jdbcTemplate.update(sql, rentalAgreement.getRental_type(),rentalAgreement.getDuration(),rentalAgreement.getPrice(),rentalAgreement.getCar_id());
     }
 
 }

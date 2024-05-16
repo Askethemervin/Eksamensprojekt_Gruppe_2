@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tilføj Skade</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="AddDamageToReport">
+<div class="container">
+    <h1>Tilføj Skade</h1>
+
+        <label for="damage-description">Beskrivelse af skade:</label>
+        <textarea id="damage-description" name="damage-description" rows="4" required></textarea>
+        <label for="damage-price">Pris:</label>
+        <input type="text" id="damage-price" name="damage-price" required>
+
+        <form action="/skadesrapporter/opret" method="get">
+        <button type="submit" class="button">Gem skade</button>
+        </form>
+</div>
+</div>
+</body>
+</html>

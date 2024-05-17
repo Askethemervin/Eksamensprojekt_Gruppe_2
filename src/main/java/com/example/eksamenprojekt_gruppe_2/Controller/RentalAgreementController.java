@@ -2,6 +2,7 @@ package com.example.eksamenprojekt_gruppe_2.Controller;
 
 import com.example.eksamenprojekt_gruppe_2.Model.RentalAgreement;
 import com.example.eksamenprojekt_gruppe_2.Repository.RentalAgreementRepository;
+import com.example.eksamenprojekt_gruppe_2.Service.CarService;
 import com.example.eksamenprojekt_gruppe_2.Service.RentalAgreementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,8 @@ import java.util.Map;
 public class RentalAgreementController {
     @Autowired
     private RentalAgreementService rentalAgreementService;
+    @Autowired
+    private CarService carService;
     @Autowired
     private RentalAgreementRepository rentalAgreementRepository;
     @GetMapping("/CreateRentalAgreementForm")
@@ -35,6 +38,7 @@ public class RentalAgreementController {
 
         try{
             rentalAgreementRepository.addRentalAgreement(rentalAgreement);
+            carService.updateCarStatus(car_id, "rented");
             return ResponseEntity.ok().body(Map.of("message","Rental Agreement has been added."));
         }catch (Exception e) {
             System.out.println(e.getMessage());

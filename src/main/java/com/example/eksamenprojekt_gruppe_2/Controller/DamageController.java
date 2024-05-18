@@ -1,14 +1,16 @@
 package com.example.eksamenprojekt_gruppe_2.Controller;
 
-import com.azure.core.annotation.Get;
-import com.azure.core.annotation.Post;
-import org.springframework.ui.Model;
 import com.example.eksamenprojekt_gruppe_2.Model.DamageReport;
+import com.example.eksamenprojekt_gruppe_2.Repository.DamageRepository;
 import com.example.eksamenprojekt_gruppe_2.Service.DamageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -16,48 +18,62 @@ import java.util.List;
 public class DamageController {
 
     @Autowired
-    private DamageService damageService;
+    private DamageRepository damageRepository;
+
+    @Autowired
+    DamageService damageService;
 
     @GetMapping("/skadesrapporter/dashboard")
     public String Showdashboard(Model model) {
-        List<DamageReport> damageReports = damageService.getAllDamageReports();
-        model.addAttribute("damageReports", damageReports);
         return "Dashboard_DamageReport";
     }
 
-    @GetMapping("/skadesrapporter/indtastid")
-    public String Showindtastid(Model model) {
-        List<DamageReport> damageReports = damageService.getAllDamageReports();
-        model.addAttribute("damageReports", damageReports);
-        return "ID_Site_DamageReport";
+    @GetMapping ("/skadesrapporter/indtastid")
+    public String showIndtastId () {
+        return "ID_Site_Damagereport";
     }
 
-    @PostMapping("/skadesrapporter/indtastid")
-    public String processIdInput(@RequestParam int lejeaftale_id, RedirectAttributes redirectAttributes) {
-        System.out.println("Received lejeaftale_id: " + lejeaftale_id);
-        redirectAttributes.addAttribute("lejeaftale_id", lejeaftale_id);
-        return "redirect:/skadesrapporter/opret";
-    }
-
-    @GetMapping("/skadesrapporter/opret")
-    public String showCreateForm(@RequestParam(required = false) int lejeaftale_id, Model model) {
+    @PostMapping ("/skadesrapporter/indtastid")
+    public String processIdInput (@RequestParam("lejeaftale_id") int lejeaftale_id, Model model) {
         model.addAttribute("lejeaftale_id", lejeaftale_id);
-        model.addAttribute("damageReport", new DamageReport());
+
+        DamageReport damageReport = new DamageReport();
+        damageReport.setRentalAgreementId(lejeaftale_id);
+
+        return "redirect:/skadesrapporter/opret/" + lejeaftale_id;
+    }
+
+    @GetMapping ("/skadesrapporter/opret/{lejeaftale_id}")
+    public String createDamageReportForId (@PathVariable ("lejeaftale_id") Integer lejeaftale_id, Model model) {
+        if (lejeaftale_id == null) {
+            return "redirect:/skadesrapporter/dashboard";
+        }
+        List<DamageReport> damageReports = damageRepository.loadDamageReport(lejeaftale_id);
+        model.addAttribute("lejeaftale_id", lejeaftale_id);
+        model.addAttribute("damageReports", damageReports);
+
         return "Form_DamageReport";
     }
 
-    @PostMapping("/skadesrapporter/opret")
-    public String processCreateForm(@ModelAttribute DamageReport damageReport, @RequestParam int lejeaftale_id) {
-        System.out.println("Creating DamageReport for lejeaftale_id: " + lejeaftale_id);
-        damageReport.setRentalAgreementId(lejeaftale_id);
-        // damageReport.setRentalAgreementId(Integer.parseInt(lejeaftale_id));
-        damageService.saveDamageReport(damageReport);
-        return "redirect:/skadesrapporter/dashboard";
+    @GetMapping("/skadesrapporter/adddamage/{lejeaftale_id}")
+    public String showCreateDamageForm(@PathVariable ("lejeaftale_id") int lejeaftale_id, Model model) {
+        model.addAttribute("lejeaftale_id", lejeaftale_id);
+        return "AddDamage";
     }
 
-    @GetMapping("/skadesrapporter/adddamage")
-    public String showAddDamageForm(Model model) {
-        model.addAttribute("damageReport", new DamageReport());
-        return "AddDamage";
+    @PostMapping ("/skadesrapporter/adddamage")
+    public ModelAndView createDamageReport (
+            @RequestParam ("lejeaftale_id") int lejeaftale_id,
+            @RequestParam ("damageDescription") String damageDescription,
+            @RequestParam ("price") double price) {
+
+        DamageReport damageReport = new DamageReport();
+        damageReport.setDamageDescription(damageDescription);
+        damageReport.setPrice(price);
+        damageReport.setRentalAgreementId(lejeaftale_id);
+
+        damageService.saveDamageReport(damageReport);
+
+        return new ModelAndView("redirect:/skadesrapporter/opret/" + lejeaftale_id);
     }
 }

@@ -28,11 +28,12 @@ public class DamageService {
     public void updateDamageReport(DamageReport damageReport) {
         damageRepository.update(damageReport);
     }
-    public void deleteDamageReportById (int id) {
-        damageRepository.deleteById(id);
-    }
 
     public List<DamageReport> getAllDamageReports() {
         return damageRepository.findAll();
+    }
+
+    public List<DamageReport> loadDamageReport(int lejeaftale_id) {
+        return damageRepository.loadDamageReport(lejeaftale_id);
     }
 }

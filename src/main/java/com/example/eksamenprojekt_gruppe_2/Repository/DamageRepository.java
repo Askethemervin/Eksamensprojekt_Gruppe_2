@@ -53,9 +53,13 @@ public class DamageRepository {
         jdbcTemplate.update(sql, id);
     }
 
-    // List all
     public List<DamageReport> findAll(){
         String sql = "SELECT * FROM damagereport";
         return jdbcTemplate.query(sql, new DamageReportRowMapper());
+    }
+
+    public List<DamageReport> loadDamageReport(int lejeaftale_id) {
+        String sql = "SELECT * FROM damagereport WHERE rentalAgreementId = ? ORDER BY id";
+        return jdbcTemplate.query(sql, new Object[]{lejeaftale_id}, new DamageReportRowMapper());
     }
 }

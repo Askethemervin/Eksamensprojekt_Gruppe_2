@@ -2,21 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Opret Skadesrapport</title>
+    <title>Skadesrapport</title>
+    <link rel="stylesheet" th:href="@{/CSS/DamageReport.css}" href="../static/CSS/DamageReport.css">
 </head>
 <body>
-<h1>Opret Skadesrapport</h1>
-<form action="/skadesrapporter/opret" method="post">
-    <input type="hidden" id="rentalAgreementId" name="lejeaftale_id" th:value="${lejeaftale_id}">
-    <div>
-        <label for="damageDescription">Skadesbeskrivelse:</label>
-        <textarea id="damageDescription" name="damageDescription" required></textarea>
-    </div>
-    <div>
-        <label for="price">Pris:</label>
-        <input type="number" step="0.01" id="price" name="price" required>
-    </div>
-    <button type="submit">Gem Skade</button>
-</form>
+<header class="headerSkadesrapport">
+    Skadesrapport
+</header>
+<div class="List_DamageReport">
+    <table>
+        <thead>
+        <tr>
+            <th>Skadebeskrivelse</th>
+            <th>Pris</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="damageReport: ${damageReport}">
+            <td th:text="${damageReport.getDamageDescription()}"></td>
+            <td th:text="${damageReport.getPrice()}+' DKK'"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="addSkade">
+    <nav>
+        <div>
+            <a th:href="@{'/skadesrapporter/adddamage/'+ ${lejeaftale_id}}">
+                <button>Tilføj skade</button>
+            </a>
+        </div>
+    </nav>
+</div>
 </body>
 </html>

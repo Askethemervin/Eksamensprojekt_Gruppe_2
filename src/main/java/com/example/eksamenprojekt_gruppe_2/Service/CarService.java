@@ -20,4 +20,10 @@ public class CarService {
     public List<Car> getAllCars() {
         return carRepository.findAll();
     }
+    public List<Car> getCarsbyStatusRented(){
+        return carRepository.findRentedCars();
+    }
+    public void updateCarStatus(int carId, String status) {
+        carRepository.updateCarStatus(carId, status);
+    }
 }

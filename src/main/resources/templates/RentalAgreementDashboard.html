@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/RentalAgreementDashboardStyle.css}" href="../static/RentalAgreementDashboardStyle.css">
+    <meta charset="UTF-8">
+    <title>Rental agreement dashboard</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>Type of leasing</tr>
+    <tr>Duration</tr>
+    <tr>Price per month</tr>
+    </thead>
+    <tbody>
+    <tr th:each="rentalAgreement: ${rentalAgreements}">
+        <td th:text="${rentalAgreement.getRental_type()}"></td>
+        <td th:text="${rentalAgreement.getDuration} + ' Months'"></td>
+        <td th:text="${rentalAgreement.getPrice} + ' Kr per month'"></td>
+        <td th:text="${rentalAgreement.getPrice} + ' Kr per month'"></td>
+    </tr>
+    </tbody>
+</table>
+<p>Click the button below to create a new rental agreement:</p>
+<a th:href="@{/CreateRentalAgreementForm}"><button>Create Rental Agreement</button></a>
+
+</body>
+</html>

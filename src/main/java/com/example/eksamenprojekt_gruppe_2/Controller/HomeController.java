@@ -1,8 +1,9 @@
-package dk.kea.projektgruppe_3_full_stack_new.Controller;
+package com.example.eksamenprojekt_gruppe_2.Controller;
 
 import com.example.eksamenprojekt_gruppe_2.Model.User;
 import com.example.eksamenprojekt_gruppe_2.Repository.DatabaseManager;
 
+import com.example.eksamenprojekt_gruppe_2.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +17,5 @@ import java.util.List;
 public class HomeController {
     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    ProductRepository productRepository;
 
 }

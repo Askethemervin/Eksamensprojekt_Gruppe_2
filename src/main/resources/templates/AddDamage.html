@@ -3,20 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Tilføj Skade</title>
+
   <link rel="stylesheet" th:href="@{/CSS/DamageReport.css}" href="../static/CSS/DamageReport.css">
+
 </head>
+
 <body>
+
 <div class="AddDamageToReport">
+
   <div class="container">
+
     <form action="/skadesrapporter/adddamage" method="post">
       <input type="hidden" name="lejeaftale_id" th:value="${lejeaftale_id}">
+
       <h1>Tilføj Skade</h1>
+
+      <div class="form-group">
       <label for="damage-description">Beskrivelse af skade:</label>
-      <textarea id="damage-description" name="damageDescription" rows="4" required></textarea>
-      <label for="damage-price">Pris:</label>
-      <input type="text" id="damage-price" name="price" required>
+      <input type="text" id="damage-description" name="damageDescription" required>
+      </div>
+
+      <div class="form-group">
+        <label for="damage-price">Pris:</label>
+        <input type="text" id="damage-price" name="price" required>
+      </div>
+
       <button type="submit" class="button">Gem skade</button>
+
+      <a th:href="@{'/skadesrapporter/opret/' + ${lejeaftale_id}}">
+        <button type="button" class="cancel-button">Annuller</button>
+      </a>
+      
     </form>
   </div>
 </div>

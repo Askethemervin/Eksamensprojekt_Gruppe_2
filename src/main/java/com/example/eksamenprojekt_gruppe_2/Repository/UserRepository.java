@@ -1,5 +1,6 @@
 package com.example.eksamenprojekt_gruppe_2.Repository;
 
+import com.example.eksamenprojekt_gruppe_2.Model.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

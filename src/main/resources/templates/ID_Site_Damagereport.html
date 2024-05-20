@@ -8,6 +8,11 @@
 <body>
 <div class="Input_Rental_Id">
   <h1>Indtast Lejeaftale ID</h1>
+
+  <div th:if="${fejlbesked}" class="fejl-besked">
+    <p th:text="${fejlbesked}"></p>
+  </div>
+
   <form action="/skadesrapporter/indtastid" method="post">
   <div>
     <label for="lejeaftale_id">Lejeaftale ID:</label>

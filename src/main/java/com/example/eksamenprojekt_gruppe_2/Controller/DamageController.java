@@ -35,12 +35,19 @@ public class DamageController {
 
     @PostMapping ("/skadesrapporter/indtastid")
     public String processIdInput (@RequestParam("lejeaftale_id") int lejeaftale_id, Model model) {
-        model.addAttribute("lejeaftale_id", lejeaftale_id);
+        DamageReport damageReportId = damageRepository.findById(lejeaftale_id);
 
-        DamageReport damageReport = new DamageReport();
-        damageReport.setRentalAgreementId(lejeaftale_id);
+        if (damageReportId != null) {
+            model.addAttribute("lejeaftale_id", lejeaftale_id);
 
-        return "redirect:/skadesrapporter/opret/" + lejeaftale_id;
+            DamageReport damageReport = new DamageReport();
+            damageReport.setRentalAgreementId(lejeaftale_id);
+
+            return "redirect:/skadesrapporter/opret/" + lejeaftale_id;
+        } else {
+            model.addAttribute("fejlbesked", "Indtast venligst et gyldigt lejeaftale id");
+            return "ID_Site_Damagereport";
+        }
     }
 
     @GetMapping ("/skadesrapporter/opret/{lejeaftale_id}")

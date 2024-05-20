@@ -45,12 +45,14 @@ public class DamageController {
 
     @GetMapping ("/skadesrapporter/opret/{lejeaftale_id}")
     public String createDamageReportForId (@PathVariable ("lejeaftale_id") Integer lejeaftale_id, Model model) {
-        if (lejeaftale_id == null) {
-            return "redirect:/skadesrapporter/dashboard";
-        }
+
         List<DamageReport> damageReports = damageRepository.loadDamageReport(lejeaftale_id);
+
+        double totalDamagePrice = damageReports.stream().mapToDouble(DamageReport::getPrice).sum();
+
         model.addAttribute("lejeaftale_id", lejeaftale_id);
         model.addAttribute("damageReports", damageReports);
+        model.addAttribute("totalDamagePrice", totalDamagePrice);
 
         return "Form_DamageReport";
     }

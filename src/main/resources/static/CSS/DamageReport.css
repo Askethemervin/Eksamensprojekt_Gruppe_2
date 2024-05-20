@@ -1,42 +1,51 @@
 body {
-    background-color: #0a0a0a;
-    color: #ffffff;
     font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
     margin: 0;
-}
-
-.headerSkadesrapport {
-    text-align: center;
     padding: 20px;
-    font-size: 24px;
 }
 
-.List_DamageReport {
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
     text-align: center;
-    width: 80%;
-    max-width: 600px;
-    margin: 20px auto;
+    color: #333;
 }
 
-.List_DamageReport table {
-    width: 50%;
-    margin: 0 auto;
+table {
+    width: 100%;
     border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
-.List_DamageReport thead tr {
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
     background-color: #f2f2f2;
 }
 
-.List_DamageReport th {
-    padding: 10px;
-    text-align: left;
-    vertical-align: center;
+.total-price {
+    text-align: right;
+    font-size: 18px;
+    color: #333;
 }
 
-.List_DamageReport tbody tr td {
-    border: 1px solid #ddd;
-    padding: 8px;
+.Show_Rental_Id {
+    text-align: left;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .addSkade {
@@ -46,7 +55,7 @@ body {
 
 .addSkade button {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: #333;
     color: white;
     border: none;
     cursor: pointer;
@@ -57,5 +66,81 @@ body {
 }
 
 .addSkade button:hover {
-    background-color: #45a049;
+    background-color: #333;
+}
+
+
+/* ----------------DASHBOARD CSS----------------------*/
+.Dashboard_DamageReport .container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.Dashboard_DamageReport .button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.Dashboard_DamageReport .button:hover {
+    background-color: #555;
+}
+
+/* ----------------INDTAST LEJEAFTALE ID FORM CSS----------------------*/
+.Input_Rental_Id {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.Input_Rental_Id form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Input_Rental_Id label {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.Input_Rental_Id input[type="number"] {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.Input_Rental_Id button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.Input_Rental_Id button:hover {
+    background-color: #555;
 }

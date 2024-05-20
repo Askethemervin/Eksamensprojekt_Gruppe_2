@@ -20,5 +20,5 @@ class SimpleCalculatorTest {
         var calculator = new SimpleCalculator();
         assertEquals(calculator.add(2, 2));
     }
-    
+
 }

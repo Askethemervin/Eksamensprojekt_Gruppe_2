@@ -18,4 +18,8 @@ public class RentalAgreementService {
     public List<RentalAgreement> getAllRentalAgreements() {
         return rentalAgreementRepository.findAll();
     }
+
+    public List<Integer> getRentalAgreementIdsByCarId(int carId) {
+        return rentalAgreementRepository.findRentalAgreementIdsByCarId(carId);
+    }
 }

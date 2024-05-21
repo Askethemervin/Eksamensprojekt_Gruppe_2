@@ -3,10 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" th:href="@{/CSS/Home.css}" href="../static/CSS/Home.css">
 </head>
+
 <body>
-<h1>Welcome to the Home Page</h1>
-<p>Click the button below to create a new rental agreement:</p>
-<a th:href="@{/CreateRentalAgreementForm}" class="btn btn-primary">Create Rental Agreement</a>
+<div class="container">
+<header>
+    <h1>Please type your login information</h1>
+</header>
+<main>
+    <form action="/login" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+
+        <button type="submit">Login</button>
+    </form>
+</main>
+</div>
 </body>
+
 </html>

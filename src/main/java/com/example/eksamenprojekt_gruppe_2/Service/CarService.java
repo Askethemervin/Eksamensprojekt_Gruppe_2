@@ -23,7 +23,24 @@ public class CarService {
     public List<Car> getCarsbyStatusRented(){
         return carRepository.findRentedCars();
     }
+    public List<Car> getCarsByStatusReturned(){
+        return carRepository.findReturnedCars();
+    }
     public void updateCarStatus(int carId, String status) {
+
         carRepository.updateCarStatus(carId, status);
     }
+    public void updateCarStatusReturned(int carId) {
+
+        carRepository.updateCarStatus(carId, "returned");
+    }
+    public void updateCarStatusAvailable(int carId) {
+
+        carRepository.updateCarStatus(carId, "available");
+    }
+    public void updateCarStatusReadyForSale(int carId) {
+        carRepository.updateCarStatus(carId,"ready for sale");
+    }
+
+
 }

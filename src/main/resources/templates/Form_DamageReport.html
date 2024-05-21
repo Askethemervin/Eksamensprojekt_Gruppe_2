@@ -6,10 +6,11 @@
     <link rel="stylesheet" th:href="@{/CSS/DamageReport.css}" href="../static/CSS/DamageReport.css">
 </head>
 <body>
-<header class="headerSkadesrapport">
-    Skadesrapport
-</header>
-<div class="List_DamageReport">
+<div class="container">
+   <h1>Skadesrapport</h1>
+    <div class="Show_Rental_Id">
+        <strong>Lejeaftale id: </strong><span th:text="${lejeaftale_id}"></span>
+    </div>
     <table>
         <thead>
         <tr>
@@ -18,12 +19,15 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="damageReport: ${damageReport}">
+        <tr th:each="damageReport : ${damageReports}">
             <td th:text="${damageReport.getDamageDescription()}"></td>
             <td th:text="${damageReport.getPrice()}+' DKK'"></td>
         </tr>
         </tbody>
     </table>
+    <div class="total-price">
+        <strong>Total pris: </strong>
+        <span th:text="${totalDamagePrice} + ' DKK'"></span>
 </div>
 <div class="addSkade">
     <nav>
@@ -32,7 +36,13 @@
                 <button>Tilføj skade</button>
             </a>
         </div>
+        <div>
+            <a th:href="@{'/skadesrapporter/dashboard'}">
+                <button>Afslut skadesrapport</button>
+            </a>
+        </div>
     </nav>
+</div>
 </div>
 </body>
 </html>

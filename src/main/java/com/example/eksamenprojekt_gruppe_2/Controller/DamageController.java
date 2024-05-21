@@ -35,22 +35,31 @@ public class DamageController {
 
     @PostMapping ("/skadesrapporter/indtastid")
     public String processIdInput (@RequestParam("lejeaftale_id") int lejeaftale_id, Model model) {
-        model.addAttribute("lejeaftale_id", lejeaftale_id);
+        DamageReport damageReportId = damageRepository.findById(lejeaftale_id);
 
-        DamageReport damageReport = new DamageReport();
-        damageReport.setRentalAgreementId(lejeaftale_id);
+        if (damageReportId != null) {
+            model.addAttribute("lejeaftale_id", lejeaftale_id);
 
-        return "redirect:/skadesrapporter/opret/" + lejeaftale_id;
+            DamageReport damageReport = new DamageReport();
+            damageReport.setRentalAgreementId(lejeaftale_id);
+
+            return "redirect:/skadesrapporter/opret/" + lejeaftale_id;
+        } else {
+            model.addAttribute("fejlbesked", "Indtast venligst et gyldigt lejeaftale id");
+            return "ID_Site_Damagereport";
+        }
     }
 
     @GetMapping ("/skadesrapporter/opret/{lejeaftale_id}")
     public String createDamageReportForId (@PathVariable ("lejeaftale_id") Integer lejeaftale_id, Model model) {
-        if (lejeaftale_id == null) {
-            return "redirect:/skadesrapporter/dashboard";
-        }
+
         List<DamageReport> damageReports = damageRepository.loadDamageReport(lejeaftale_id);
+
+        double totalDamagePrice = damageReports.stream().mapToDouble(DamageReport::getPrice).sum();
+
         model.addAttribute("lejeaftale_id", lejeaftale_id);
         model.addAttribute("damageReports", damageReports);
+        model.addAttribute("totalDamagePrice", totalDamagePrice);
 
         return "Form_DamageReport";
     }

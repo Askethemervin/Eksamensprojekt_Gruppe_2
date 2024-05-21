@@ -2,6 +2,7 @@ package com.example.eksamenprojekt_gruppe_2.Repository;
 
 import com.example.eksamenprojekt_gruppe_2.Model.DamageReport;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -37,8 +38,12 @@ public class DamageRepository {
 
     // read
     public DamageReport findById(int id){
-        String sql = "SELECT * FROM damagereport WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, new DamageReportRowMapper(), id);
+        try {
+            String sql = "SELECT * FROM damagereport WHERE id = ?";
+            return jdbcTemplate.queryForObject(sql, new DamageReportRowMapper(), id);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 
     // update

@@ -27,14 +27,14 @@ public class CarController {
     }
 
 
-    @GetMapping("/cars")
+    @GetMapping("/biler")
     public String showCars(Model model){
         List<Car> cars = carService.getAllCars();
         model.addAttribute("cars", cars);
         return "Car";
     }
 
-    @GetMapping("/RentedCars")
+    @GetMapping("/Udlejedebiler")
     public String showRentedCars(Model model){
         List<Car> cars = carService.getCarsbyStatusRented();
         List<RentalAgreement> rentalAgreements = rentalAgreementService.getAllRentalAgreements();
@@ -56,7 +56,7 @@ public class CarController {
         return "RentedCars";
 
     }
-    @GetMapping("/returnedCars")
+    @GetMapping("/returneredebiler")
     public String showReturnedCars(Model model) {
         List<Car> returnedCars = carService.getCarsByStatusReturned();
         List<RentalAgreement> rentalAgreements = rentalAgreementService.getAllRentalAgreements();
@@ -73,18 +73,18 @@ public class CarController {
         @PostMapping ("/returnCar")
     public String returnCar(@RequestParam("carId") int carId){
     carService.updateCarStatusReturned(carId);
-    return "redirect:/returnedCars";
+    return "redirect:/returneredeCars";
     }
 
     @PostMapping("/makeCarAvailable")
     public String makeCarAvailable(@RequestParam("carId") int carId){
         carService.updateCarStatusAvailable(carId);
-        return "redirect:/returnedCars";
+        return "redirect:/returneredeCars";
     }
     @PostMapping("/makeCarReadyForSale")
     public String makeCarReadyForSale(@RequestParam("carId") int carId){
         carService.updateCarStatusReadyForSale(carId);
-        return "redirect:/returnedCars";
+        return "redirect:/returneredeCars";
     }
 
 }

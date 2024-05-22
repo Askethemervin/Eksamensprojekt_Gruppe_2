@@ -20,7 +20,7 @@ public class RentalAgreementController {
     private CarService carService;
     @Autowired
     private RentalAgreementRepository rentalAgreementRepository;
-    @GetMapping("/CreateRentalAgreementForm")
+    @GetMapping("/Opretnylejeaftale")
     public String CreateRentalAgreementForm() {
         return "rentalAgreementForm";
     }
@@ -38,7 +38,7 @@ public class RentalAgreementController {
         try {
             rentalAgreementRepository.addRentalAgreement(rentalAgreement);
             carService.updateCarStatus(car_id, "rented");
-            return new RedirectView("/showRentalAgreement");
+            return new RedirectView("/vislejeaftaler");
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -49,7 +49,7 @@ public class RentalAgreementController {
 
 
     }
-    @GetMapping("/showRentalAgreement")
+    @GetMapping("/vislejeaftaler")
     public String showRentalAgreement(Model model) {
         List<RentalAgreement> rentalAgreements = rentalAgreementService.getAllRentalAgreements();
         model.addAttribute("rentalAgreements", rentalAgreements);

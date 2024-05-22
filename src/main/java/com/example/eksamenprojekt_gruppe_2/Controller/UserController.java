@@ -17,7 +17,7 @@ public class UserController {
 
     @GetMapping("/")
     public String home() {
-        return "Home";
+        return "SelectProfile";
     }
 
 }

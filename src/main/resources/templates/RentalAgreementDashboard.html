@@ -6,31 +6,31 @@
     <title>Rental agreement dashboard</title>
 </head>
 <body>
-
+<div th:replace="~{Header :: Header}"></div>
 <div class="container">
-    <h1>Rental agreements</h1>
+    <h1>Lejeaftaler</h1>
 <table>
     <thead>
     <tr>
-        <th>Type of leasing</th>
-        <th>Duration</th>
-        <th>Price per month</th>
-        <th>Customer nr</th>
+        <th>Type</th>
+        <th>Længde</th>
+        <th>Pris per måned</th>
+        <th>Kunde nr</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="rentalAgreement: ${rentalAgreements}">
         <td th:text="${rentalAgreement.getRental_type()}"></td>
-        <td th:text="${rentalAgreement.getDuration} + ' Months'"></td>
-        <td th:text="${rentalAgreement.getPrice} + ' Kr per month'"></td>
+        <td th:text="${rentalAgreement.getDuration} + ' Måneder'"></td>
+        <td th:text="${rentalAgreement.getPrice} + ' Kr per måned'"></td>
         <td th:text="${rentalAgreement.getCustomer_id}"></td>
 
     </tr>
     </tbody>
 </table>
     <div class="Create-agreement">
-        <p>Click the button below to create a new rental agreement:</p>
-        <a th:href="@{/CreateRentalAgreementForm}"><button>Create Rental Agreement</button></a>
+        <p>Klik på knappen herunder for at oprette en ny lejeaftale:</p>
+        <a th:href="@{/Opretnylejeaftale}"><button>Opret ny lejeaftale</button></a>
     </div>
 </div>
 </body>

@@ -22,7 +22,7 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
-    @GetMapping("/CreateCustomer")
+    @GetMapping("/Opretkunde")
     public String CreateCustomer(){
         return "CreateCustomer";
     }

@@ -21,18 +21,6 @@ public class DamageService {
         damageRepository.save(damageReport);
     }
 
-    public DamageReport getDamageReportById (int id) {
-        return damageRepository.findById(id);
-    }
-
-    public void updateDamageReport(DamageReport damageReport) {
-        damageRepository.update(damageReport);
-    }
-
-    public List<DamageReport> getAllDamageReports() {
-        return damageRepository.findAll();
-    }
-
     public List<DamageReport> loadDamageReport(int lejeaftale_id) {
         return damageRepository.loadDamageReport(lejeaftale_id);
     }

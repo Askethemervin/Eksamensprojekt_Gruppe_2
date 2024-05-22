@@ -36,33 +36,6 @@ public class DamageRepository {
         jdbcTemplate.update(sql, damageReport.getRentalAgreementId(), damageReport.getDamageDescription(), damageReport.getPrice());
     }
 
-    // read
-    public DamageReport findById(int id){
-        try {
-            String sql = "SELECT * FROM damagereport WHERE id = ?";
-            return jdbcTemplate.queryForObject(sql, new DamageReportRowMapper(), id);
-        } catch (EmptyResultDataAccessException e) {
-            return null;
-        }
-    }
-
-    // update
-    public void update (DamageReport damageReport) {
-        String sql = "UPDATE damagereport SET rentalAgreementId = ?, damageDescription = ?, price = ? WHERE id = ?";
-        jdbcTemplate.update(sql, damageReport.getRentalAgreementId(), damageReport.getDamageDescription(), damageReport.getPrice(), damageReport.getId());
-    }
-
-    // Delete
-    public void deleteById(int id) {
-        String sql = "DELETE FROM damagereport WHERE id = ?";
-        jdbcTemplate.update(sql, id);
-    }
-
-    public List<DamageReport> findAll(){
-        String sql = "SELECT * FROM damagereport";
-        return jdbcTemplate.query(sql, new DamageReportRowMapper());
-    }
-
     public List<DamageReport> loadDamageReport(int lejeaftale_id) {
         String sql = "SELECT * FROM damagereport WHERE rentalAgreementId = ? ORDER BY id";
         return jdbcTemplate.query(sql, new Object[]{lejeaftale_id}, new DamageReportRowMapper());

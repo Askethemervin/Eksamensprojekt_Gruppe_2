@@ -37,11 +37,11 @@ public class DamageController {
         return "ID_Site_Damagereport";
     }
 
-    @PostMapping ("/skadesrapporter/indtastid")
-    public String processIdInput (@RequestParam("lejeaftale_id") int lejeaftale_id, Model model) {
-        DamageReport damageReportId = damageRepository.findById(lejeaftale_id);
+    @PostMapping("/skadesrapporter/indtastid")
+    public String processIdInput(@RequestParam("lejeaftale_id") int lejeaftale_id, Model model) {
+        RentalAgreement rentalAgreement = rentalAgreementRepository.findById(lejeaftale_id);
 
-        if (damageReportId != null) {
+        if (rentalAgreement != null) {
             model.addAttribute("lejeaftale_id", lejeaftale_id);
 
             DamageReport damageReport = new DamageReport();

@@ -3,6 +3,7 @@ package com.example.eksamenprojekt_gruppe_2.Repository;
 
 import com.example.eksamenprojekt_gruppe_2.Model.RentalAgreement;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,6 +18,20 @@ import java.util.List;
 public class RentalAgreementRepository {
 
     private final JdbcTemplate jdbcTemplate;
+
+    private static final class RentalAgreementRowMapper implements RowMapper<RentalAgreement> {
+        @Override
+        public RentalAgreement mapRow(ResultSet rs, int rowNum) throws SQLException {
+            RentalAgreement rentalAgreement = new RentalAgreement();
+            rentalAgreement.setId(rs.getInt("RentalAgreement_ID"));
+            rentalAgreement.setRental_type(rs.getString("rental_type"));
+            rentalAgreement.setDuration(rs.getInt("duration"));
+            rentalAgreement.setPrice(rs.getInt("price"));
+            rentalAgreement.setCar_id(rs.getInt("car_id"));
+            rentalAgreement.setCustomer_id(rs.getInt("customer_id"));
+            return rentalAgreement;
+        }
+    }
     @Autowired
     public RentalAgreementRepository(JdbcTemplate jdbcTemplate) {
 
@@ -32,5 +47,12 @@ public class RentalAgreementRepository {
         jdbcTemplate.update(sql, rentalAgreement.getRental_type(),rentalAgreement.getDuration(),rentalAgreement.getPrice(),rentalAgreement.getCar_id(), rentalAgreement.getCustomer_id());
     }
 
-
+    public RentalAgreement findById(int id) {
+        try {
+            String sql = "SELECT * FROM rentalagreements WHERE RentalAgreement_ID = ?";
+            return jdbcTemplate.queryForObject(sql, new RentalAgreementRowMapper(), id);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
 }

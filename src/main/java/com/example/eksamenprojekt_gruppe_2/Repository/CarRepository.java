@@ -27,6 +27,11 @@ public class CarRepository {
         RowMapper<Car> carRowMapper = new BeanPropertyRowMapper<>(Car.class);
         return jdbcTemplate.query(sql, carRowMapper);
     }
+    public List<Car> findReturnedCars() {
+        String sql = "SELECT * FROM cars WHERE vehiclestatus = 'returned'";
+        RowMapper<Car> carRowMapper = new BeanPropertyRowMapper<>(Car.class);
+        return jdbcTemplate.query(sql, carRowMapper);
+    }
     public void updateCarStatus(int carId, String status) {
         String sql = "UPDATE cars SET vehiclestatus = ? WHERE vehiclenumber = ?";
         jdbcTemplate.update(sql, status, carId);

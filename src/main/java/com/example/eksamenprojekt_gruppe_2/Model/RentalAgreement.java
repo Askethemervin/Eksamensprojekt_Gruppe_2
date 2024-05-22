@@ -8,23 +8,28 @@ public class RentalAgreement {
 
     double price;
     int car_id;
+    int customer_id;
 
-    public RentalAgreement(){
+    public RentalAgreement() {
     }
 
-    public RentalAgreement(String rental_type, int duration, double price, int car_id){
+    public RentalAgreement(String rental_type, int car_id, int duration, double price, int customer_id) {
         this.rental_type = rental_type;
+        this.car_id = car_id;
         this.duration = duration;
         this.price = price;
-        this.car_id = car_id;
+        this.customer_id = customer_id;
     }
-    public RentalAgreement(int id, String rental_type, int duration, double price, int car_id) {
+
+    public RentalAgreement(String rental_type, int id, int duration, double price, int car_id, int customer_id) {
+        this.rental_type = rental_type;
         this.id = id;
-        this.rental_type = rental_type;
         this.duration = duration;
         this.price = price;
         this.car_id = car_id;
+        this.customer_id = customer_id;
     }
+
     public int getId() {
         return id;
     }
@@ -56,6 +61,7 @@ public class RentalAgreement {
     public void setPrice(double price) {
         this.price = price;
     }
+
     public int getCar_id() {
         return car_id;
     }
@@ -64,4 +70,11 @@ public class RentalAgreement {
         this.car_id = car_id;
     }
 
+    public int getCustomer_id() {
+        return customer_id;
+    }
+
+    public void setCustomer_id(int customer_id) {
+        this.customer_id = customer_id;
+    }
 }

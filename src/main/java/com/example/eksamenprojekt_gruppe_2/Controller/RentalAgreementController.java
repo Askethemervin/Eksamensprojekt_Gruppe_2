@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.Map;
@@ -28,22 +29,25 @@ public class RentalAgreementController {
     }
 
     @PostMapping("/addRentalAgreement")
-    public ResponseEntity<Map<String, String>> addRentalAgreement(@RequestParam("rental_type") String rental_type, @RequestParam("duration") int duration, @RequestParam("price") double price, @RequestParam("car_id") int car_id) {
+    public RedirectView addRentalAgreement(@RequestParam("rental_type") String rental_type, @RequestParam("duration") int duration, @RequestParam("price") double price, @RequestParam("car_id") int car_id, @RequestParam("customer_id") int customer_id) {
         RentalAgreement rentalAgreement = new RentalAgreement();
         rentalAgreement.setRental_type(rental_type);
         rentalAgreement.setDuration(duration);
         rentalAgreement.setPrice(price);
         rentalAgreement.setCar_id(car_id);
+        rentalAgreement.setCustomer_id(customer_id);
 
 
-        try{
+        try {
             rentalAgreementRepository.addRentalAgreement(rentalAgreement);
             carService.updateCarStatus(car_id, "rented");
-            return ResponseEntity.ok().body(Map.of("message","Rental Agreement has been added."));
-        }catch (Exception e) {
+            return new RedirectView("/showRentalAgreement");
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("message","An error has occured while making your rental agreement"));
+            RedirectView redirectView = new RedirectView("/CreateRentalAgreementForm");
+            redirectView.addStaticAttribute("error", "An error has occurred while making your rental agreement");
+            return redirectView;
         }
 
 

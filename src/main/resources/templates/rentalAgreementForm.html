@@ -2,16 +2,20 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/CSS/RentalAgreement.css}" href="../static/CSS/RentalAgreement.css">
     <title>Rental Agreement</title>
 </head>
 <body>
-<header>Create a new rental agreement</header>
+<div class="container">
+<header>Opret en ny lejeaftale</header>
 <form id="rentalAgreementForm" action="/addRentalAgreement" method="post">
     <input type="text" name="rental_type" placeholder="Type">
-    <input type="text" name="duration" placeholder="Duration">
-    <input type="text" name="price" placeholder="Price">
-    <input type="text" name="car_id" placeholder="Car ID">
-    <button type="submit">Submit</button>
+    <input type="text" name="duration" placeholder="Længde">
+    <input type="text" name="price" placeholder="Pris pr måned">
+    <input type="text" name="car_id" placeholder="Bil ID">
+    <input type="text" name="customer_id" placeholder="Kunde nr">
+    <button type="submit">Opret</button>
 </form>
+</div>
 </body>
 </html>

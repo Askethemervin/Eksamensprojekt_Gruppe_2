@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8" >
     <link rel="stylesheet" th:href="@{/CSS/RentedCars.css}" href="../static/CSS/RentedCars.css">
-    <title>Rented cars</title>
+    <title>Returned cars</title>
 </head>
 <body>
 <div class="container">
-    <h1>Rented Cars</h1>
+    <h1>Returned Cars</h1>
     <div class="total-rented-cars">
-    <Strong>Total Rented Cars: </Strong><span th:text="${rentedcarsCount}"></span>
+        <Strong>Total Returned Cars: </Strong><span th:text="${returnedCarsCount}"></span>
     </div>
     <table>
         <thead>
@@ -18,8 +18,9 @@
             <th>Model</th>
             <th>License Plate</th>
             <th>Brand</th>
-            <th>Rental Price</th>
-            <th>Return car</th>
+            <th>Show Damage report</th>
+            <th>Make Available</th>
+            <th>Make ready for sale</th>
         </tr>
         </thead>
         <tbody>
@@ -28,20 +29,26 @@
             <td th:text="${car.model}"></td>
             <td th:text="${car.licensePlate}"></td>
             <td th:text="${car.brand}"></td>
-            <td th:text="${rentalMap[car.vehicleNumber]?.price}"></td>
             <td>
-                <form action="/returnCar" method="post">
+
+                <a href="/skadesrapporter/indtastid" class="button">View Damage Report</a>
+            </td>
+            <td>
+                <form action="/makeCarAvailable" method="post">
                     <input type="hidden" name="carId" th:value="${car.vehicleNumber}">
                     <button type="submit">Return</button>
+                </form>
+            </td>
+            <td>
+                <form action ="/MakeCarReadyForSale" method="post">
+                    <input type="hidden" name="carId" th:value="${car.vehicleNumber}">
+                    <button type="submit">Sell</button>
                 </form>
             </td>
         </tr>
         </tbody>
     </table>
-    <div class="total-price">
 
-        <strong>Total Rental Price: </strong><span th:text="${totalRentalPrice}"></span>
-    </div>
 </div>
 
 </body>

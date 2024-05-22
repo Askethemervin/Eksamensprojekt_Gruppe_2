@@ -8,6 +8,8 @@ import com.example.eksamenprojekt_gruppe_2.Service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -54,4 +56,35 @@ public class CarController {
         return "RentedCars";
 
     }
+    @GetMapping("/returnedCars")
+    public String showReturnedCars(Model model) {
+        List<Car> returnedCars = carService.getCarsByStatusReturned();
+        List<RentalAgreement> rentalAgreements = rentalAgreementService.getAllRentalAgreements();
+
+        Map<Integer, RentalAgreement> rentalMap = rentalAgreements.stream()
+                .collect(Collectors.toMap(RentalAgreement::getCar_id, ra -> ra));
+
+        int returnedCarsCount = returnedCars.size();
+        model.addAttribute("cars", returnedCars);
+        model.addAttribute("rentalMap", rentalMap);
+        model.addAttribute("returnedCarsCount", returnedCarsCount);
+        return "ReturnedCars";
+    }
+        @PostMapping ("/returnCar")
+    public String returnCar(@RequestParam("carId") int carId){
+    carService.updateCarStatusReturned(carId);
+    return "redirect:/returnedCars";
+    }
+
+    @PostMapping("/makeCarAvailable")
+    public String makeCarAvailable(@RequestParam("carId") int carId){
+        carService.updateCarStatusAvailable(carId);
+        return "redirect:/returnedCars";
+    }
+    @PostMapping("/makeCarReadyForSale")
+    public String makeCarReadyForSale(@RequestParam("carId") int carId){
+        carService.updateCarStatusReadyForSale(carId);
+        return "redirect:/returnedCars";
+    }
+
 }

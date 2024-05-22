@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: white;
     margin: 0;
     padding: 20px;
 }
@@ -97,7 +97,7 @@ th {
     background-color: #555;
 }
 
-/* ----------------INDTAST LEJEAFTALE ID CSS----------------------*/
+/* ----------------INPUT RENTAL ID CSS----------------------*/
 .Input_Rental_Id {
     max-width: 800px;
     margin: auto;
@@ -155,7 +155,7 @@ th {
     text-align: center;
 }
 
-/* ----------------TILFØJ SKADE TIL RAPPORT CSS----------------------*/
+/* ----------------ADD DAMAGE CSS----------------------*/
 .AddDamageToReport {
     max-width: 800px;
     margin: auto;

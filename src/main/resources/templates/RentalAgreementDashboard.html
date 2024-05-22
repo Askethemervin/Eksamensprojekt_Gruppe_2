@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="@{/RentalAgreementDashboardStyle.css}" href="../static/RentalAgreementDashboardStyle.css">
+    <link rel="stylesheet" th:href="@{/CSS/RentalAgreementDashboardStyle.css}" href="../static/CSS/RentalAgreementDashboardStyle.css">
     <meta charset="UTF-8">
     <title>Rental agreement dashboard</title>
 </head>
 <body>
+
+<div class="container">
+    <h1>Rental agreements</h1>
 <table>
     <thead>
-    <tr>Type of leasing</tr>
-    <tr>Duration</tr>
-    <tr>Price per month</tr>
+    <tr>
+        <th>Type of leasing</th>
+        <th>Duration</th>
+        <th>Price per month</th>
+        <th>Customer nr</th>
+    </tr>
     </thead>
     <tbody>
     <tr th:each="rentalAgreement: ${rentalAgreements}">
         <td th:text="${rentalAgreement.getRental_type()}"></td>
         <td th:text="${rentalAgreement.getDuration} + ' Months'"></td>
         <td th:text="${rentalAgreement.getPrice} + ' Kr per month'"></td>
-        <td th:text="${rentalAgreement.getPrice} + ' Kr per month'"></td>
+        <td th:text="${rentalAgreement.getCustomer_id}"></td>
+
     </tr>
     </tbody>
 </table>
-<p>Click the button below to create a new rental agreement:</p>
-<a th:href="@{/CreateRentalAgreementForm}"><button>Create Rental Agreement</button></a>
-
+    <div class="Create-agreement">
+        <p>Click the button below to create a new rental agreement:</p>
+        <a th:href="@{/CreateRentalAgreementForm}"><button>Create Rental Agreement</button></a>
+    </div>
+</div>
 </body>
 </html>

@@ -18,4 +18,5 @@ public class RentalAgreementService {
     public List<RentalAgreement> getAllRentalAgreements() {
         return rentalAgreementRepository.findAll();
     }
+
 }

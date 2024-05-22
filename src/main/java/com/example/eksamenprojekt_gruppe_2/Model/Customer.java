@@ -5,24 +5,23 @@ public class Customer {
     String first_name;
     String last_name;
     int driverslicense_number;
-    int rental_id;
 
     public Customer() {
     }
 
-    public Customer(String first_name, int rental_id, int driverslicense_number, String last_name) {
+    public Customer(String first_name, int driverslicense_number, String last_name) {
         this.first_name = first_name;
-        this.rental_id = rental_id;
+
         this.driverslicense_number = driverslicense_number;
         this.last_name = last_name;
     }
 
-    public Customer(int customer_id, String last_name, String first_name, int driverslicense_number, int rental_id) {
+    public Customer(int customer_id, String last_name, String first_name, int driverslicense_number) {
         this.customer_id = customer_id;
         this.last_name = last_name;
         this.first_name = first_name;
         this.driverslicense_number = driverslicense_number;
-        this.rental_id = rental_id;
+
     }
 
     public int getCustomer_id() {
@@ -57,11 +56,5 @@ public class Customer {
         this.driverslicense_number = driverslicense_number;
     }
 
-    public int getRental_id() {
-        return rental_id;
-    }
 
-    public void setRental_id(int rental_id) {
-        this.rental_id = rental_id;
-    }
 }

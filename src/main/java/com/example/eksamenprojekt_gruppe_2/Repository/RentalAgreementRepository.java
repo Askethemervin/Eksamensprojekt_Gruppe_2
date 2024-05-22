@@ -8,6 +8,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -25,8 +28,9 @@ public class RentalAgreementRepository {
         return jdbcTemplate.query(sql, rentalAgreementRowMapper);
     }
     public void addRentalAgreement(RentalAgreement rentalAgreement) {
-        String sql = "INSERT INTO rentalagreements (rental_type, duration, price, car_id) VALUES (?,?,?,?)";
-        jdbcTemplate.update(sql, rentalAgreement.getRental_type(),rentalAgreement.getDuration(),rentalAgreement.getPrice(),rentalAgreement.getCar_id());
+        String sql = "INSERT INTO rentalagreements (rental_type, duration, price, car_id, customer_id) VALUES (?,?,?,?,?)";
+        jdbcTemplate.update(sql, rentalAgreement.getRental_type(),rentalAgreement.getDuration(),rentalAgreement.getPrice(),rentalAgreement.getCar_id(), rentalAgreement.getCustomer_id());
     }
+
 
 }

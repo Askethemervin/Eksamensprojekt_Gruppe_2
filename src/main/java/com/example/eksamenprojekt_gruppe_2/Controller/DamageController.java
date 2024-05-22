@@ -1,7 +1,9 @@
 package com.example.eksamenprojekt_gruppe_2.Controller;
 
 import com.example.eksamenprojekt_gruppe_2.Model.DamageReport;
+import com.example.eksamenprojekt_gruppe_2.Model.RentalAgreement;
 import com.example.eksamenprojekt_gruppe_2.Repository.DamageRepository;
+import com.example.eksamenprojekt_gruppe_2.Repository.RentalAgreementRepository;
 import com.example.eksamenprojekt_gruppe_2.Service.DamageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,8 @@ public class DamageController {
 
     @Autowired
     private DamageRepository damageRepository;
+    @Autowired
+    private RentalAgreementRepository rentalAgreementRepository;
 
     @Autowired
     DamageService damageService;
@@ -85,4 +89,6 @@ public class DamageController {
 
         return new ModelAndView("redirect:/skadesrapporter/opret/" + lejeaftale_id);
     }
+
+
 }

@@ -74,7 +74,7 @@ public class DamageController {
         return "AddDamage";
     }
 
-    @PostMapping ("/skadesrapporter/adddamage")
+    @PostMapping ("/skadesrapporter/tilføjskader")
     public ModelAndView createDamageReport (
             @RequestParam ("lejeaftale_id") int lejeaftale_id,
             @RequestParam ("damageDescription") String damageDescription,

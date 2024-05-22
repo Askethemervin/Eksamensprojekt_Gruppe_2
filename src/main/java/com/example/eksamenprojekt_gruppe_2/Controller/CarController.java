@@ -73,18 +73,20 @@ public class CarController {
         @PostMapping ("/returnCar")
     public String returnCar(@RequestParam("carId") int carId){
     carService.updateCarStatusReturned(carId);
-    return "redirect:/returneredeCars";
+    return "redirect:/returneredebiler";
     }
 
     @PostMapping("/makeCarAvailable")
     public String makeCarAvailable(@RequestParam("carId") int carId){
+        rentalAgreementService.deleteRentalAgreementByCarId(carId);
         carService.updateCarStatusAvailable(carId);
-        return "redirect:/returneredeCars";
+        return "redirect:/returneredebiler";
     }
     @PostMapping("/makeCarReadyForSale")
     public String makeCarReadyForSale(@RequestParam("carId") int carId){
+        rentalAgreementService.deleteRentalAgreementByCarId(carId);
         carService.updateCarStatusReadyForSale(carId);
-        return "redirect:/returneredeCars";
+        return "redirect:/returneredebiler";
     }
 
 }

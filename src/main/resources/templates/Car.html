@@ -2,23 +2,38 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/CSS/Car.css}" href="../static/CSS/Car.css">
     <title>Car test</title>
 </head>
 <body>
+<div class="container">
+<h1>Alle biler</h1>
 <table>
 <thead>
-<tr>Model</tr>
-<tr>Car brand</tr>
-<tr>Status</tr>
+<tr>
+<th>Bil id</th>
+<th>Model</th>
+<th>Stelnummer</th>
+<th>Nummerplade</th>
+<th>Bilmærke</th>
+<th>Status</th>
+<th>Energimærke</th>
+<th>Bil årgang</th>
+</tr>
 </thead>
 <tbody>
 <tr th:each="car: ${cars}">
-<td th:text="${car.getModel()}"></td>
+    <td th:text="${car.getVehicleNumber()}"></td>
+    <td th:text="${car.getModel()}"></td>
+    <td th:text="${car.getSerialNumber()}"></td>
+    <td th:text="${car.getLicensePlate()}"></td>
     <td th:text="${car.getBrand()}"></td>
-    <td th:text="${car.getStatus()}"></td>
+    <td th:text="${car.getVehiclestatus()}"></td>
+    <td th:text="${car.getEnviromentlabel()}"></td>
+    <td th:text="${car.getCar_year()}"></td>
 </tr>
 </tbody>
 </table>
-
+</div>
 </body>
 </html>

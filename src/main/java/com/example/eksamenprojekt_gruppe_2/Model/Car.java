@@ -6,33 +6,33 @@ public class Car {
     int serialNumber;
     String licensePlate;
     String brand;
-    String status;
+    String vehiclestatus;
     char enviromentlabel;
-    int year;
+    int car_year;
 
     public Car(){
 
     }
 
-    public Car(String model, int serialNumber, String licensePlate, String brand, String status, char enviromentlabel, int year) {
+    public Car(String model, int serialNumber, String licensePlate, String brand, String vehiclestatus, char enviromentlabel, int car_year) {
         this.model = model;
         this.serialNumber = serialNumber;
         this.licensePlate = licensePlate;
         this.brand = brand;
-        this.status = status;
+        this.vehiclestatus = vehiclestatus;
         this.enviromentlabel = enviromentlabel;
-        this.year = year;
+        this.car_year = car_year;
     }
 
-    public Car(int vehicleNumber, String model, int serialNumber, String licensePlate, String brand, String status, char enviromentlabel, int year) {
+    public Car(int vehicleNumber, String model, int serialNumber, String licensePlate, String brand, String vehiclestatus, char enviromentlabel, int car_year) {
         this.vehicleNumber = vehicleNumber;
         this.model = model;
         this.serialNumber = serialNumber;
         this.licensePlate = licensePlate;
         this.brand = brand;
-        this.status = status;
+        this.vehiclestatus = vehiclestatus;
         this.enviromentlabel = enviromentlabel;
-        this.year = year;
+        this.car_year = car_year;
     }
 
     public int getVehicleNumber() {
@@ -74,12 +74,12 @@ public class Car {
     public void setBrand(String brand) {
         this.brand = brand;
     }
-    public String getStatus() {
-        return status;
+    public String getVehiclestatus() {
+        return vehiclestatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setVehiclestatus(String vehiclestatus) {
+        this.vehiclestatus = vehiclestatus;
     }
 
     public char getEnviromentlabel() {
@@ -90,11 +90,11 @@ public class Car {
         this.enviromentlabel = enviromentlabel;
     }
 
-    public int getYear() {
-        return year;
+    public int getCar_year() {
+        return car_year;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setCar_year(int car_year) {
+        this.car_year = car_year;
     }
 }

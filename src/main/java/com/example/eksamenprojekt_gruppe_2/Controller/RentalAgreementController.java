@@ -5,15 +5,12 @@ import com.example.eksamenprojekt_gruppe_2.Repository.RentalAgreementRepository;
 import com.example.eksamenprojekt_gruppe_2.Service.CarService;
 import com.example.eksamenprojekt_gruppe_2.Service.RentalAgreementService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class RentalAgreementController {

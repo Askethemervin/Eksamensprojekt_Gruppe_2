@@ -7,19 +7,19 @@
 </head>
 <body>
 <div class="container">
-    <h1>Rented Cars</h1>
+    <h1>Udlejede biler</h1>
     <div class="total-rented-cars">
-    <Strong>Total Rented Cars: </Strong><span th:text="${rentedcarsCount}"></span>
+    <Strong>Samlede mængde udlejede biler: </Strong><span th:text="${rentedcarsCount}"></span>
     </div>
     <table>
         <thead>
         <tr>
-            <th>Car id</th>
+            <th>Bil id</th>
             <th>Model</th>
-            <th>License Plate</th>
-            <th>Brand</th>
-            <th>Rental Price</th>
-            <th>Return car</th>
+            <th>Nummerplade</th>
+            <th>Bilmærke</th>
+            <th>Leje aftale pris</th>
+            <th>Aflever bil</th>
         </tr>
         </thead>
         <tbody>
@@ -32,7 +32,7 @@
             <td>
                 <form action="/returnCar" method="post">
                     <input type="hidden" name="carId" th:value="${car.vehicleNumber}">
-                    <button type="submit">Return</button>
+                    <button type="submit">Aflever</button>
                 </form>
             </td>
         </tr>
@@ -40,7 +40,7 @@
     </table>
     <div class="total-price">
 
-        <strong>Total Rental Price: </strong><span th:text="${totalRentalPrice}"></span>
+        <strong>Samlede pris for lejeaftaler: </strong><span th:text="${totalRentalPrice}"></span>
     </div>
 </div>
 

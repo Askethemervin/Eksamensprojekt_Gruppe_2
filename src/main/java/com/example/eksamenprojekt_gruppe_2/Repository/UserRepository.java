@@ -43,4 +43,8 @@ public class UserRepository {
         }
         return false;
     }
+
+    public String getUserIdByUsername(String username) {
+        return username;
+    }
 }

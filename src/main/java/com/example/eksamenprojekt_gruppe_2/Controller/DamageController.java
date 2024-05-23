@@ -80,7 +80,7 @@ public class DamageController {
     }
 
     // Behandler oprettelsen af en ny skadesrapport, og tilføjer skaden til skadesrapporten
-    @PostMapping ("/skadesrapporter/adddamage")
+    @PostMapping ("/skadesrapporter/tilfojskader")
     public ModelAndView createDamageReport (
             @RequestParam ("lejeaftale_id") int lejeaftale_id,
             @RequestParam ("damageDescription") String damageDescription,

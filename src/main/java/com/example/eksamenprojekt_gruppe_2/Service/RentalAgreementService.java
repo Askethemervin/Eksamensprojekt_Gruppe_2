@@ -4,6 +4,7 @@ import com.example.eksamenprojekt_gruppe_2.Model.RentalAgreement;
 import com.example.eksamenprojekt_gruppe_2.Repository.RentalAgreementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,5 +20,10 @@ public class RentalAgreementService {
     // Henter alle lejeaftaler fra repository
     public List<RentalAgreement> getAllRentalAgreements() {
         return rentalAgreementRepository.findAll();
+    }
+
+    @Transactional
+    public void deleteRentalAgreementByCarId(int carId) {
+        rentalAgreementRepository.deleteByCarId(carId);
     }
 }

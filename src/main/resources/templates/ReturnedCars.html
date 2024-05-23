@@ -6,21 +6,27 @@
     <title>Returned cars</title>
 </head>
 <body>
+<div th:replace="~{Header :: Header}"></div>
 <div class="container">
-    <h1>Returned Cars</h1>
+    <h1>Returnerede biler</h1>
+    <div class="navigation">
+        <a th:href="@{/biler}"><button>Vis biler</button></a>
+        <a th:href="@{/Udlejedebiler}"><button>Vis udlejede biler</button></a>
+    </div>
+    <p></p>
     <div class="total-rented-cars">
-        <Strong>Total Returned Cars: </Strong><span th:text="${returnedCarsCount}"></span>
+        <Strong>Antal returnerede biler: </Strong><span th:text="${returnedCarsCount}"></span>
     </div>
     <table>
         <thead>
         <tr>
-            <th>Car id</th>
+            <th>Bil id</th>
             <th>Model</th>
-            <th>License Plate</th>
+            <th>Nummerplade</th>
             <th>Brand</th>
-            <th>Show Damage report</th>
-            <th>Make Available</th>
-            <th>Make ready for sale</th>
+            <th>Vis skadesrapport</th>
+            <th>Gør ledig</th>
+            <th>Gør klar til salg</th>
         </tr>
         </thead>
         <tbody>
@@ -31,18 +37,18 @@
             <td th:text="${car.brand}"></td>
             <td>
 
-                <a href="/skadesrapporter/indtastid" class="button">View Damage Report</a>
+                <a href="/skadesrapporter/indtastid" class="button">Vis Skadesrapport</a>
             </td>
             <td>
                 <form action="/makeCarAvailable" method="post">
                     <input type="hidden" name="carId" th:value="${car.vehicleNumber}">
-                    <button type="submit">Return</button>
+                    <button type="submit">Ledig</button>
                 </form>
             </td>
             <td>
-                <form action ="/MakeCarReadyForSale" method="post">
+                <form action ="/makeCarReadyForSale" method="post">
                     <input type="hidden" name="carId" th:value="${car.vehicleNumber}">
-                    <button type="submit">Sell</button>
+                    <button type="submit">Sælg</button>
                 </form>
             </td>
         </tr>

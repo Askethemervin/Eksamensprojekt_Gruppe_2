@@ -52,6 +52,10 @@ public class RentalAgreementRepository {
         String sql = "INSERT INTO rentalagreements (rental_type, duration, price, car_id, customer_id) VALUES (?,?,?,?,?)";
         jdbcTemplate.update(sql, rentalAgreement.getRental_type(),rentalAgreement.getDuration(),rentalAgreement.getPrice(),rentalAgreement.getCar_id(), rentalAgreement.getCustomer_id());
     }
+    public void deleteByCarId(int carId) {
+        String sql = "DELETE FROM rentalagreements WHERE car_id = ?";
+        jdbcTemplate.update(sql, carId);
+    }
 
     // Finder en lejeaftale baseret på dens ID
     public RentalAgreement findById(int id) {

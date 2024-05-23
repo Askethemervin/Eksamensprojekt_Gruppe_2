@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8" >
     <link rel="stylesheet" th:href="@{/CSS/RentedCars.css}" href="../static/CSS/RentedCars.css">
-    <title>Rented cars</title>
+    <title>Udlejedebiler</title>
 </head>
 <body>
+<div th:replace="~{Header :: Header}"></div>
 <div class="container">
     <h1>Udlejede biler</h1>
+    <div class="navigation">
+        <a th:href="@{/biler}"><button>Vis biler</button></a>
+        <a th:href="@{/returneredebiler}"><button>Vis returnerede biler</button> </a>
+    </div>
+    <p></p>
     <div class="total-rented-cars">
     <Strong>Samlede mængde udlejede biler: </Strong><span th:text="${rentedcarsCount}"></span>
     </div>
@@ -18,7 +24,7 @@
             <th>Model</th>
             <th>Nummerplade</th>
             <th>Bilmærke</th>
-            <th>Leje aftale pris</th>
+            <th>Lejeaftale pris</th>
             <th>Aflever bil</th>
         </tr>
         </thead>

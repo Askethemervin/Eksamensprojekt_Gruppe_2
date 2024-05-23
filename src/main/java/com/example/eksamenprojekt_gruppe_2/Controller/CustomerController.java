@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.service.annotation.GetExchange;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -50,4 +53,13 @@ public class CustomerController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("message","An error has occured while adding the customer."));
         }
     }
+    //GetMapping som viser alle kunder
+    @GetMapping("/kunder")
+    public String showCustomers(Model model){
+        List<Customer> customer = customerService.getAllCustomers();
+        model.addAttribute("customer",customer);
+        return "Customer";
+    }
+
+
 }

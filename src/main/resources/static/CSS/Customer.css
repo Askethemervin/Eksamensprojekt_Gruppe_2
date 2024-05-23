@@ -18,7 +18,22 @@ h1 {
     text-align: center;
     color: #333;
 }
-
+.create-customer{
+    text-align: right;
+    font-size: 18px;
+    color: #333;
+}
+button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
 table {
     width: 100%;
     border-collapse: collapse;

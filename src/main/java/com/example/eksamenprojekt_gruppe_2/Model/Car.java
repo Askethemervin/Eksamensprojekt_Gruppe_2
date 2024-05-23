@@ -9,6 +9,7 @@ public class Car {
     String vehiclestatus;
     char enviromentlabel;
     int car_year;
+    int rentalAgreementId;
 
     public Car(){
 

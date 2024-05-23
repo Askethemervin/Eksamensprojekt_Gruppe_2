@@ -9,6 +9,11 @@
 <div th:replace="~{Header :: Header}"></div>
 <div class="container">
 <header>Opret en ny lejeaftale</header>
+
+    <div th:if="${fejlbesked}" class="fejl-besked">
+        <p th:text="${fejlbesked}"></p>
+    </div>
+
 <form id="rentalAgreementForm" action="/addRentalAgreement" method="post">
     <input type="text" name="rental_type" placeholder="Type">
     <input type="text" name="duration" placeholder="Længde">

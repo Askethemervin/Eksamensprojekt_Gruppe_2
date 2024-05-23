@@ -9,6 +9,15 @@
 <div th:replace="~{Header :: Header}"></div>
 <div class="container">
 <header>Opret ny kunde</header>
+
+    <div th:if="${fejlbesked}" class="fejl-besked">
+        <p th:text="${fejlbesked}"></p>
+    </div>
+
+    <div th:if="${validationError}" class="error-message">
+        <p th:text="${validationError}"></p>
+    </div>
+
 <form id="CreateCustomer" action="/addCustomer" method="post">
     <input type="text" name="first_name" placeholder="Fornavn">
     <input type="text" name="last_name" placeholder="Efternavn">

@@ -67,6 +67,7 @@ public class CarController {
                 .collect(Collectors.toMap(RentalAgreement::getCar_id, ra -> ra));
 
         int returnedCarsCount = returnedCars.size();
+
         model.addAttribute("cars", returnedCars);
         model.addAttribute("rentalMap", rentalMap);
         model.addAttribute("returnedCarsCount", returnedCarsCount);

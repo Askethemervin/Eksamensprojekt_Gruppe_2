@@ -11,12 +11,17 @@
 </head>
 
 <body>
+
 <div th:replace="~{Header :: Header}"></div>
 <div class="AddDamageToReport">
 
   <div class="container">
 
-    <form action="/skadesrapporter/adddamage" method="post">
+    <div th:if="${error}" class="fejl-besked">
+      <p th:text="${error}"></p>
+    </div>
+
+    <form action="/skadesrapporter/tilfojskader" method="post">
       <input type="hidden" name="lejeaftale_id" th:value="${lejeaftale_id}">
 
       <h1>Tilføj Skade</h1>

@@ -147,16 +147,6 @@ th {
     background-color: #555;
 }
 
-.fejl-besked {
-    background-color: #f2dede;
-    color: #a94442;
-    padding: 10px;
-    border: 1px solid #ebccd1;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
 /* ----------------ADD DAMAGE CSS----------------------*/
 .AddDamageToReport {
     max-width: 800px;
@@ -209,4 +199,14 @@ th {
 
 .AddDamageToReport button:hover {
     background-color: #555;
+}
+/* -------------Fejl besked-------*/
+.fejl-besked {
+    background-color: #f2dede;
+    color: #a94442;
+    padding: 10px;
+    border: 1px solid #ebccd1;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
 }

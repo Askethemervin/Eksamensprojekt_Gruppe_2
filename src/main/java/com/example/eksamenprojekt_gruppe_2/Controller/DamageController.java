@@ -73,7 +73,7 @@ public class DamageController {
     }
 
     // Viser formularen til at tilføje en ny skade for et specifikt lejeaftale ID
-    @GetMapping("/skadesrapporter/adddamage/{lejeaftale_id}")
+    @GetMapping("/skadesrapporter/tilfojskader/{lejeaftale_id}")
     public String showCreateDamageForm(@PathVariable ("lejeaftale_id") int lejeaftale_id, Model model) {
         model.addAttribute("lejeaftale_id", lejeaftale_id);
         return "AddDamage";
@@ -81,20 +81,28 @@ public class DamageController {
 
     // Behandler oprettelsen af en ny skadesrapport, og tilføjer skaden til skadesrapporten
     @PostMapping ("/skadesrapporter/tilfojskader")
-    public ModelAndView createDamageReport (
+    public String createDamageReport (
             @RequestParam ("lejeaftale_id") int lejeaftale_id,
             @RequestParam ("damageDescription") String damageDescription,
-            @RequestParam ("price") double price) {
+            @RequestParam ("price") String priceString,
+            Model model) {
 
-        DamageReport damageReport = new DamageReport();
-        damageReport.setDamageDescription(damageDescription);
-        damageReport.setPrice(price);
-        damageReport.setRentalAgreementId(lejeaftale_id);
+        try {
+            double price = Double.parseDouble(priceString);
+            DamageReport damageReport = new DamageReport();
+            damageReport.setDamageDescription(damageDescription);
+            damageReport.setPrice(price);
+            damageReport.setRentalAgreementId(lejeaftale_id);
 
-        damageService.saveDamageReport(damageReport);
+            damageService.saveDamageReport(damageReport);
 
-        return new ModelAndView("redirect:/skadesrapporter/opret/" + lejeaftale_id);
+            return "redirect:/skadesrapporter/opret/" + lejeaftale_id;
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            model.addAttribute("error", "Indtast gyldigt input.");
+            model.addAttribute("lejeaftale_id", lejeaftale_id);
+            return "AddDamage";
+        }
     }
-
-
 }

@@ -46,3 +46,23 @@ button {
 button:hover {
     background-color: #333;
 }
+
+.fejl-besked {
+    background-color: #f2dede;
+    color: #a94442;
+    padding: 10px;
+    border: 1px solid #ebccd1;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.error-message {
+    background-color: #f2dede;
+    color: #a94442;
+    padding: 10px;
+    border: 1px solid #ebccd1;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+

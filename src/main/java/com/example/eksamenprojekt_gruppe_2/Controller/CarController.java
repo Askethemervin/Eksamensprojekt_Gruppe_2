@@ -26,7 +26,7 @@ public class CarController {
         this.rentalAgreementService=rentalAgreementService;
     }
 
-
+    // Viser en liste over alle biler
     @GetMapping("/biler")
     public String showCars(Model model){
         List<Car> cars = carService.getAllCars();
@@ -34,6 +34,7 @@ public class CarController {
         return "Car";
     }
 
+    // Viser en liste over udlejede biler sammen med deres lejeaftaler og total lejepris
     @GetMapping("/Udlejedebiler")
     public String showRentedCars(Model model){
         List<Car> cars = carService.getCarsbyStatusRented();
@@ -54,8 +55,9 @@ public class CarController {
         model.addAttribute("totalRentalPrice", totalRentalPrice);
         model.addAttribute("rentedcarsCount", rentedcarsCount);
         return "RentedCars";
-
     }
+
+    // Viser en liste over returnerede biler og antal returnerede biler
     @GetMapping("/returneredebiler")
     public String showReturnedCars(Model model) {
         List<Car> returnedCars = carService.getCarsByStatusReturned();
@@ -70,17 +72,22 @@ public class CarController {
         model.addAttribute("returnedCarsCount", returnedCarsCount);
         return "ReturnedCars";
     }
-        @PostMapping ("/returnCar")
+
+    // Opdaterer status for en bil til "returneret" og omdirigerer til siden med returnerede biler
+    @PostMapping ("/returnCar")
     public String returnCar(@RequestParam("carId") int carId){
     carService.updateCarStatusReturned(carId);
     return "redirect:/returneredeCars";
     }
 
+    // Opdaterer status for en bil til "tilgængelig" og omdirigerer til siden med returnerede biler
     @PostMapping("/makeCarAvailable")
     public String makeCarAvailable(@RequestParam("carId") int carId){
         carService.updateCarStatusAvailable(carId);
         return "redirect:/returneredeCars";
     }
+
+    // Opdaterer status for en bil til "klar til salg" og omdirigerer til siden med returnerede biler
     @PostMapping("/makeCarReadyForSale")
     public String makeCarReadyForSale(@RequestParam("carId") int carId){
         carService.updateCarStatusReadyForSale(carId);

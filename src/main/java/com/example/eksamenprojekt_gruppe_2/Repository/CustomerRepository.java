@@ -17,11 +17,15 @@ public class CustomerRepository {
     public CustomerRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
+    // Finder alle kunder i databasen
     public List<Customer> findAll() {
         String sql = "SELECT * FROM customer";
         RowMapper<Customer> customerRowMapper= new BeanPropertyRowMapper<Customer>(Customer.class);
         return jdbcTemplate.query(sql, customerRowMapper);
     }
+
+    // Tilføjer en ny kunde til databasen
     public void addCustomer(Customer customer){
         String sql = "INSERT INTO customer (first_name, last_name, driverslicense_number) VALUES (?,?,?)";
         jdbcTemplate.update(sql, customer.getFirst_name(), customer.getLast_name(), customer.getDriverslicense_number());

@@ -27,16 +27,19 @@ public class DamageController {
     @Autowired
     DamageService damageService;
 
+    // Viser dashboardet for skadesrapporter
     @GetMapping("/skadesrapporter/dashboard")
     public String Showdashboard(Model model) {
         return "Dashboard_DamageReport";
     }
 
+    // Viser en side, hvor man kan indtaste et lejeaftale ID
     @GetMapping ("/skadesrapporter/indtastid")
     public String showIndtastId () {
         return "ID_Site_Damagereport";
     }
 
+    // Behandler indtastningen af lejeaftale ID og videresender til oprettelsessiden, hvis ID'et er gyldigt
     @PostMapping("/skadesrapporter/indtastid")
     public String processIdInput(@RequestParam("lejeaftale_id") int lejeaftale_id, Model model) {
         RentalAgreement rentalAgreement = rentalAgreementRepository.findById(lejeaftale_id);
@@ -54,6 +57,7 @@ public class DamageController {
         }
     }
 
+    // Opretter en skadesrapport for et specifikt lejeaftale ID
     @GetMapping ("/skadesrapporter/opret/{lejeaftale_id}")
     public String createDamageReportForId (@PathVariable ("lejeaftale_id") Integer lejeaftale_id, Model model) {
 
@@ -68,12 +72,14 @@ public class DamageController {
         return "Form_DamageReport";
     }
 
+    // Viser formularen til at tilføje en ny skade for et specifikt lejeaftale ID
     @GetMapping("/skadesrapporter/adddamage/{lejeaftale_id}")
     public String showCreateDamageForm(@PathVariable ("lejeaftale_id") int lejeaftale_id, Model model) {
         model.addAttribute("lejeaftale_id", lejeaftale_id);
         return "AddDamage";
     }
 
+    // Behandler oprettelsen af en ny skadesrapport, og tilføjer skaden til skadesrapporten
     @PostMapping ("/skadesrapporter/adddamage")
     public ModelAndView createDamageReport (
             @RequestParam ("lejeaftale_id") int lejeaftale_id,

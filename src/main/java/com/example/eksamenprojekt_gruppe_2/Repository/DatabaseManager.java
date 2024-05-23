@@ -19,23 +19,26 @@ public class DatabaseManager {
         DatabaseManager.dataSource = dataSource;
     }
 
-    public static int authenticateUser(String username, String password) {
+    // Metode vi brugte til at godkende bruger baseret på brugernavn og adgangskode i sidste projekt, som vi desværre ikke nåede at få implementeret.
+    public static int authenticateUserByUsernameAndPassword(String username, String password) {
         try (Connection conn = dataSource.getConnection()) {
+            // SQL-forespørgsel til at hente brugeroplysninger baseret på brugernavn og adgangskode
             String query = "SELECT * FROM users WHERE username = ? AND password = ?";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setString(1, username);
             statement.setString(2, password);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
+                    // Hvis brugeren findes, returneres deres ID
                     return resultSet.getInt("id");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        // Returner -1 hvis godkendelse mislykkes
         return -1;
     }
-
 }
 
 

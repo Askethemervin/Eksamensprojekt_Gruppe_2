@@ -13,28 +13,36 @@ import java.util.List;
 public class CarRepository {
 
     private final JdbcTemplate jdbcTemplate;
+
     @Autowired
     public CarRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
+    // Finder alle biler i databasen
     public List<Car> findAll() {
         String sql = "SELECT * FROM cars";
         RowMapper<Car> carRowMapper = new BeanPropertyRowMapper<>(Car.class);
         return jdbcTemplate.query(sql,  carRowMapper);
     }
+
+    // Finder alle biler, der er udlejet
     public List<Car> findRentedCars() {
         String sql = "SELECT * FROM cars WHERE vehiclestatus = 'rented'";
         RowMapper<Car> carRowMapper = new BeanPropertyRowMapper<>(Car.class);
         return jdbcTemplate.query(sql, carRowMapper);
     }
+
+    // Finder alle biler, der er returneret
     public List<Car> findReturnedCars() {
         String sql = "SELECT * FROM cars WHERE vehiclestatus = 'returned'";
         RowMapper<Car> carRowMapper = new BeanPropertyRowMapper<>(Car.class);
         return jdbcTemplate.query(sql, carRowMapper);
     }
+
+    // Opdaterer status for en bil
     public void updateCarStatus(int carId, String status) {
         String sql = "UPDATE cars SET vehiclestatus = ? WHERE vehiclenumber = ?";
         jdbcTemplate.update(sql, status, carId);
     }
-
 }

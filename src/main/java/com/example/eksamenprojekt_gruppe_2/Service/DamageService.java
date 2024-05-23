@@ -17,11 +17,8 @@ public class DamageService {
         this.damageRepository = damageRepository;
     }
 
+    // Gemmer en skadesrapport ved at kalde save-metoden i DamageRepository
     public void saveDamageReport (DamageReport damageReport) {
         damageRepository.save(damageReport);
-    }
-
-    public List<DamageReport> loadDamageReport(int lejeaftale_id) {
-        return damageRepository.loadDamageReport(lejeaftale_id);
     }
 }

@@ -19,6 +19,7 @@ public class RentalAgreementRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
+    // Mapper til at konvertere rows fra databasen til RentalAgreement-objekter
     private static final class RentalAgreementRowMapper implements RowMapper<RentalAgreement> {
         @Override
         public RentalAgreement mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -32,27 +33,33 @@ public class RentalAgreementRepository {
             return rentalAgreement;
         }
     }
+    // Konstruktør til at initialisere JdbcTemplate
     @Autowired
     public RentalAgreementRepository(JdbcTemplate jdbcTemplate) {
 
         this.jdbcTemplate = jdbcTemplate;
     }
+
+    // Finder alle lejeaftaler i databasen
     public List<RentalAgreement> findAll() {
         String sql = "SELECT * FROM rentalagreements";
         RowMapper<RentalAgreement> rentalAgreementRowMapper= new BeanPropertyRowMapper<>(RentalAgreement.class);
         return jdbcTemplate.query(sql, rentalAgreementRowMapper);
     }
+
+    // Tilføjer en ny lejeaftale til databasen
     public void addRentalAgreement(RentalAgreement rentalAgreement) {
         String sql = "INSERT INTO rentalagreements (rental_type, duration, price, car_id, customer_id) VALUES (?,?,?,?,?)";
         jdbcTemplate.update(sql, rentalAgreement.getRental_type(),rentalAgreement.getDuration(),rentalAgreement.getPrice(),rentalAgreement.getCar_id(), rentalAgreement.getCustomer_id());
     }
 
+    // Finder en lejeaftale baseret på dens ID
     public RentalAgreement findById(int id) {
         try {
             String sql = "SELECT * FROM rentalagreements WHERE RentalAgreement_ID = ?";
             return jdbcTemplate.queryForObject(sql, new RentalAgreementRowMapper(), id);
         } catch (EmptyResultDataAccessException e) {
-            return null;
+            return null; // Returnerer null, hvis lejeaftalen ikke blev fundet
         }
     }
 }

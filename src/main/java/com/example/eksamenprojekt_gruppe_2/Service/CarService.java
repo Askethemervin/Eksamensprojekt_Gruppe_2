@@ -17,27 +17,37 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
+    // Henter alle biler fra repository
     public List<Car> getAllCars() {
         return carRepository.findAll();
     }
+
+    // Henter alle biler, der er udlejet, fra repository
     public List<Car> getCarsbyStatusRented(){
         return carRepository.findRentedCars();
     }
+
+    // Henter alle biler, der er returneret, fra repository
     public List<Car> getCarsByStatusReturned(){
         return carRepository.findReturnedCars();
     }
-    public void updateCarStatus(int carId, String status) {
 
+    // Opdaterer status for en given bil i repository
+    public void updateCarStatus(int carId, String status) {
         carRepository.updateCarStatus(carId, status);
     }
-    public void updateCarStatusReturned(int carId) {
 
+    // Opdaterer status for en given bil til "returneret" i repository
+    public void updateCarStatusReturned(int carId) {
         carRepository.updateCarStatus(carId, "returned");
     }
-    public void updateCarStatusAvailable(int carId) {
 
+    // Opdaterer status for en given bil til "ledig" i repository
+    public void updateCarStatusAvailable(int carId) {
         carRepository.updateCarStatus(carId, "available");
     }
+
+    // Opdaterer status for en given bil til "klar til salg" i repository
     public void updateCarStatusReadyForSale(int carId) {
         carRepository.updateCarStatus(carId,"ready for sale");
     }

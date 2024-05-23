@@ -17,6 +17,7 @@ public class DamageRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    // Indre klasse, der implementerer RowMapper for at mappe resultater fra databasen til DamageReport objekter
     private static final class DamageReportRowMapper implements RowMapper<DamageReport> {
 
         @Override
@@ -30,12 +31,13 @@ public class DamageRepository {
         }
     }
 
-    // create
+    // Gemmer en ny skadesrapport i databasen
     public void save (DamageReport damageReport){
         String sql = "INSERT INTO damagereport (rentalAgreementId, damageDescription, price) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, damageReport.getRentalAgreementId(), damageReport.getDamageDescription(), damageReport.getPrice());
     }
 
+    // Henter alle skadesrapporter for et specifikt lejeaftale ID fra databasen
     public List<DamageReport> loadDamageReport(int lejeaftale_id) {
         String sql = "SELECT * FROM damagereport WHERE rentalAgreementId = ? ORDER BY id";
         return jdbcTemplate.query(sql, new Object[]{lejeaftale_id}, new DamageReportRowMapper());

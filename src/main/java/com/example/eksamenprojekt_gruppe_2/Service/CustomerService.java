@@ -15,6 +15,8 @@ public class CustomerService {
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
+
+    // henter alle kunder fra repository
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }

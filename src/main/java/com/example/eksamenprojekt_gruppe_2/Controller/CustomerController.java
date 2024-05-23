@@ -22,27 +22,32 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
+    // Viser siden til at oprette en kunde
     @GetMapping("/Opretkunde")
     public String CreateCustomer(){
         return "CreateCustomer";
     }
 
+    // Tilføjer en ny kunde til systemet
     @PostMapping("/addCustomer")
     public ResponseEntity<Map<String,String>> addCustomer(@RequestParam("first_name") String first_name,@RequestParam("last_name") String last_name,@RequestParam("driverslicense_number") int driverslicense_number){
+
+        // Opretter et nyt Customer objekt og sætter attributter
         Customer customer =new Customer();
         customer.setFirst_name(first_name);
         customer.setLast_name(last_name);
         customer.setDriverslicense_number(driverslicense_number);
 
         try {
+            // Forsøger at tilføje kunden til databasen via CustomerRepository
             customerRepository.addCustomer(customer);
+            // Returnerer en succesbesked hvis kunden er tilføjet
             return ResponseEntity.ok().body(Map.of("message","The customer has been added"));
         } catch (Exception e) {
+            // Logger fejlen og returnerer en fejlbesked hvis der opstår en fejl
             System.out.println(e.getMessage());
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("message","An error has occured while adding the customer."));
         }
     }
-
-
 }

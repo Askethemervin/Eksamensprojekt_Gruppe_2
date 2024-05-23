@@ -15,8 +15,9 @@ public class RentalAgreementService {
     public RentalAgreementService(RentalAgreementRepository rentalAgreementRepository) {
         this.rentalAgreementRepository = rentalAgreementRepository;
     }
+
+    // Henter alle lejeaftaler fra repository
     public List<RentalAgreement> getAllRentalAgreements() {
         return rentalAgreementRepository.findAll();
     }
-
 }

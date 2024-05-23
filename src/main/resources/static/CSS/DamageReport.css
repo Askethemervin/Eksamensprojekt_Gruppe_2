@@ -1,6 +1,8 @@
+/* ----------------skadesliste/form_damagereport CSS----------------------*/
+
 body {
     font-family: Arial, sans-serif;
-    background-color: white;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 20px;
 }
@@ -181,7 +183,7 @@ th {
 .AddDamageToReport label {
     font-size: 18px;
     color: #333;
-    margin-bottom: 5px; /* Tilføjet en lille margin under hver label */
+    margin-bottom: 5px;
 }
 
 .AddDamageToReport textarea,

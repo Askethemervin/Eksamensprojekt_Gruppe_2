@@ -40,7 +40,7 @@ public class RentalAgreementRepository {
     }
 
     // Finder alle lejeaftaler i databasen
-    public List<RentalAgreement> findAll() {
+    public List<RentalAgreement> getAllRentalAgreements() {
         String sql = "SELECT * FROM rentalagreements";
         RowMapper<RentalAgreement> rentalAgreementRowMapper= new BeanPropertyRowMapper<>(RentalAgreement.class);
         return jdbcTemplate.query(sql, rentalAgreementRowMapper);

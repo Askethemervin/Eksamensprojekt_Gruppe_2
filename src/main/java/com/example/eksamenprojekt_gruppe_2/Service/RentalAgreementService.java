@@ -19,7 +19,7 @@ public class RentalAgreementService {
 
     // Henter alle lejeaftaler fra repository
     public List<RentalAgreement> getAllRentalAgreements() {
-        return rentalAgreementRepository.findAll();
+        return rentalAgreementRepository.getAllRentalAgreements();
     }
 
     //Sletter en lejeaftale via bil ID som er en foreign key

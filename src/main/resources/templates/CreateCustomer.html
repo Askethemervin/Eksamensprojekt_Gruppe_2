@@ -8,8 +8,9 @@
 <body>
 <div th:replace="~{Header :: Header}"></div>
 <div class="container">
-<header>Opret ny kunde</header>
-
+    <div class="head">
+        <header>Opret ny kunde</header>
+    </div>
     <div th:if="${fejlbesked}" class="fejl-besked">
         <p th:text="${fejlbesked}"></p>
     </div>

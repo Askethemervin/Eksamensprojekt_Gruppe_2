@@ -16,6 +16,7 @@
 <table>
     <thead>
     <tr>
+        <th>ID</th>
         <th>Type</th>
         <th>Længde</th>
         <th>Pris per måned</th>
@@ -24,10 +25,11 @@
     </thead>
     <tbody>
     <tr th:each="rentalAgreement: ${rentalAgreements}">
+        <td th:text="${rentalAgreement.RentalAgreement_id}"></td>
         <td th:text="${rentalAgreement.getRental_type()}"></td>
-        <td th:text="${rentalAgreement.getDuration} + ' Måneder'"></td>
-        <td th:text="${rentalAgreement.getPrice} + ' Kr per måned'"></td>
-        <td th:text="${rentalAgreement.getCustomer_id}"></td>
+        <td th:text="${rentalAgreement.duration} + ' Måneder'"></td>
+        <td th:text="${rentalAgreement.price} + ' Kr per måned'"></td>
+        <td th:text="${rentalAgreement.customer_id}"></td>
 
     </tr>
     </tbody>

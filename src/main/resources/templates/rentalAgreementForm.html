@@ -8,18 +8,19 @@
 <body>
 <div th:replace="~{Header :: Header}"></div>
 <div class="container">
-<header>Opret en ny lejeaftale</header>
-
+    <div class="head">
+        <header>Opret en ny lejeaftale</header>
+    </div>
     <div th:if="${fejlbesked}" class="fejl-besked">
         <p th:text="${fejlbesked}"></p>
     </div>
 
 <form id="rentalAgreementForm" action="/addRentalAgreement" method="post">
-    <input type="text" name="rental_type" placeholder="Type">
-    <input type="text" name="duration" placeholder="Længde">
-    <input type="text" name="price" placeholder="Pris pr måned">
-    <input type="text" name="car_id" placeholder="Bil ID">
-    <input type="text" name="customer_id" placeholder="Kunde nr">
+    <input type="text" name="rental_type" placeholder="Type" required>
+    <input type="text" name="duration" placeholder="Længde" required>
+    <input type="text" name="price" placeholder="Pris pr måned" required>
+    <input type="text" name="car_id" placeholder="Bil ID" required>
+    <input type="text" name="customer_id" placeholder="Kunde nr" required>
     <button type="submit">Opret</button>
 </form>
 </div>

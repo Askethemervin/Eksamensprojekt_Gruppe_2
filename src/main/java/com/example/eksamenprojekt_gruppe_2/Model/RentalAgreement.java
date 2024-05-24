@@ -1,11 +1,9 @@
 package com.example.eksamenprojekt_gruppe_2.Model;
 
 public class RentalAgreement {
-    int id;
+    int RentalAgreement_id;
     String rental_type;
     int duration;
-
-
     double price;
     int car_id;
     int customer_id;
@@ -21,21 +19,21 @@ public class RentalAgreement {
         this.customer_id = customer_id;
     }
 
-    public RentalAgreement(String rental_type, int id, int duration, double price, int car_id, int customer_id) {
+    public RentalAgreement(String rental_type, int RentalAgreement_id, int duration, double price, int car_id, int customer_id) {
         this.rental_type = rental_type;
-        this.id = id;
+        this.RentalAgreement_id = RentalAgreement_id;
         this.duration = duration;
         this.price = price;
         this.car_id = car_id;
         this.customer_id = customer_id;
     }
 
-    public int getId() {
-        return id;
+    public int getRentalAgreement_id() {
+        return RentalAgreement_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setRentalAgreement_id(int rentalAgreement_id) {
+        this.RentalAgreement_id = rentalAgreement_id;
     }
 
     public String getRental_type() {

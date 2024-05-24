@@ -22,6 +22,7 @@ public class RentalAgreementService {
         return rentalAgreementRepository.findAll();
     }
 
+    //Sletter en lejeaftale via bil ID som er en foreign key
     @Transactional
     public void deleteRentalAgreementByCarId(int carId) {
         rentalAgreementRepository.deleteByCarId(carId);

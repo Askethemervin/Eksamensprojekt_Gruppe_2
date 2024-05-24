@@ -21,4 +21,8 @@ public class DamageService {
     public void saveDamageReport (DamageReport damageReport) {
         damageRepository.save(damageReport);
     }
+
+    public void deleteDamageReportsByRentalAgreementId(int lejeaftale_id) {
+        damageRepository.deleteByRentalAgreementId(lejeaftale_id);
+    }
 }

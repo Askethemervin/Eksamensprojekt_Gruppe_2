@@ -1,6 +1,7 @@
 package com.example.eksamenprojekt_gruppe_2.Controller;
 
 import com.example.eksamenprojekt_gruppe_2.Model.RentalAgreement;
+import com.example.eksamenprojekt_gruppe_2.Service.DamageService;
 import com.example.eksamenprojekt_gruppe_2.Service.RentalAgreementService;
 import org.springframework.ui.Model;
 import com.example.eksamenprojekt_gruppe_2.Model.Car;
@@ -20,10 +21,13 @@ public class CarController {
 
     private final CarService carService;
     private final RentalAgreementService rentalAgreementService;
+    private final DamageService damageService;
+
     @Autowired
-    public CarController(CarService carService, RentalAgreementService rentalAgreementService) {
+    public CarController(CarService carService, RentalAgreementService rentalAgreementService, DamageService damageService) {
         this.carService = carService;
         this.rentalAgreementService=rentalAgreementService;
+        this.damageService = damageService;
     }
 
     // Viser en liste over alle biler

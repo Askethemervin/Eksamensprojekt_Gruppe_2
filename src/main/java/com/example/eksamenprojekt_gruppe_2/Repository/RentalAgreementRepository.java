@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -24,7 +23,7 @@ public class RentalAgreementRepository {
         @Override
         public RentalAgreement mapRow(ResultSet rs, int rowNum) throws SQLException {
             RentalAgreement rentalAgreement = new RentalAgreement();
-            rentalAgreement.setId(rs.getInt("RentalAgreement_ID"));
+            rentalAgreement.setRentalAgreement_id(rs.getInt("RentalAgreement_ID"));
             rentalAgreement.setRental_type(rs.getString("rental_type"));
             rentalAgreement.setDuration(rs.getInt("duration"));
             rentalAgreement.setPrice(rs.getInt("price"));
@@ -52,10 +51,12 @@ public class RentalAgreementRepository {
         String sql = "INSERT INTO rentalagreements (rental_type, duration, price, car_id, customer_id) VALUES (?,?,?,?,?)";
         jdbcTemplate.update(sql, rentalAgreement.getRental_type(),rentalAgreement.getDuration(),rentalAgreement.getPrice(),rentalAgreement.getCar_id(), rentalAgreement.getCustomer_id());
     }
+    //Sletter en lejeaftale ud fra hvilket
     public void deleteByCarId(int carId) {
         String sql = "DELETE FROM rentalagreements WHERE car_id = ?";
         jdbcTemplate.update(sql, carId);
     }
+
 
     // Finder en lejeaftale baseret på dens ID
     public RentalAgreement findById(int id) {

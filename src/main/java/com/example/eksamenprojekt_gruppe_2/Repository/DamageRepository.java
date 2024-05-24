@@ -42,4 +42,11 @@ public class DamageRepository {
         String sql = "SELECT * FROM damagereport WHERE rentalAgreementId = ? ORDER BY id";
         return jdbcTemplate.query(sql, new Object[]{lejeaftale_id}, new DamageReportRowMapper());
     }
+
+    // Sletter skadesrapporter baseret på lejeaftale ID
+    public void deleteByRentalAgreementId(int lejeaftale_id) {
+        String sql = "DELETE FROM damagereport WHERE damagereport.rentalAgreementId = ?";
+        jdbcTemplate.update(sql, lejeaftale_id);
+    }
+
 }

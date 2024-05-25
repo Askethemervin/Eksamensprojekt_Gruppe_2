@@ -56,6 +56,6 @@ public class RentalAgreementController {
     public String showRentalAgreement(Model model) {
         List<RentalAgreement> rentalAgreements = rentalAgreementService.getAllRentalAgreements();
         model.addAttribute("rentalAgreements", rentalAgreements);
-        return "rentalAgreementDashboard";
+        return "RentalAgreementDashboard";
     }
 }

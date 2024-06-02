@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS DamageReport (
                                             rentalAgreementId INT,
                                             damageDescription VARCHAR(255),
                                             price DOUBLE,
-                                            FOREIGN KEY (rentalAgreementId) REFERENCES rentalagreements(RentalAgreement_ID)
+                                            FOREIGN KEY (rentalAgreementId) REFERENCES rentalagreements(RentalAgreement_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS customer(

@@ -11,6 +11,12 @@ CREATE TABLE IF NOT EXISTS Cars(
                                    enviromentlabel CHAR NOT NULL,
                                    Car_year INT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS customer(
+                                       customer_id INT PRIMARY KEY AUTO_INCREMENT,
+                                       first_name VARCHAR(255),
+                                       last_name VARCHAR(255),
+                                       driverslicense_number INT
+);
 CREATE TABLE IF NOT EXISTS RentalAgreements(
                                                RentalAgreement_ID INT PRIMARY KEY AUTO_INCREMENT,
                                                rental_type VARCHAR(255) NOT NULL,
@@ -35,15 +41,10 @@ CREATE TABLE IF NOT EXISTS DamageReport (
                                             rentalAgreementId INT,
                                             damageDescription VARCHAR(255),
                                             price DOUBLE,
-                                            FOREIGN KEY (rentalAgreementId) REFERENCES rentalagreements(RentalAgreement_ID)
+                                            FOREIGN KEY (rentalAgreementId) REFERENCES rentalagreements(RentalAgreement_ID) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS customer(
-                                       customer_id INT PRIMARY KEY AUTO_INCREMENT,
-                                       first_name VARCHAR(255),
-                                       last_name VARCHAR(255),
-                                       driverslicense_number INT
-);
+
 
 
 

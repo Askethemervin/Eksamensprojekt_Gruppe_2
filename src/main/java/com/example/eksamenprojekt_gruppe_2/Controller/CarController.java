@@ -37,7 +37,7 @@ public class CarController {
         model.addAttribute("cars", cars);
         return "Car";
     }
-
+// hej jarl
     // Viser en liste over udlejede biler sammen med deres lejeaftaler og total lejepris
     @GetMapping("/Udlejedebiler")
     public String showRentedCars(Model model){

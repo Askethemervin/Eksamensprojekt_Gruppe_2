@@ -12,7 +12,6 @@ public class Car {
     int rentalAgreementId;
 
     public Car(){
-
     }
 
     public Car(String model, int serialNumber, String licensePlate, String brand, String vehiclestatus, char enviromentlabel, int car_year) {

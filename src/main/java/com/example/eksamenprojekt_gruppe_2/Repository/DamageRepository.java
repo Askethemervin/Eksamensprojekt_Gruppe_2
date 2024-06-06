@@ -34,7 +34,10 @@ public class DamageRepository {
     // Gemmer en ny skadesrapport i databasen
     public void save (DamageReport damageReport){
         String sql = "INSERT INTO damagereport (rentalAgreementId, damageDescription, price) VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, damageReport.getRentalAgreementId(), damageReport.getDamageDescription(), damageReport.getPrice());
+        jdbcTemplate.update(sql,
+                damageReport.getRentalAgreementId(),
+                damageReport.getDamageDescription(),
+                damageReport.getPrice());
     }
 
     // Henter alle skadesrapporter for et specifikt lejeaftale ID fra databasen
